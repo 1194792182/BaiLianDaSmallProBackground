@@ -7,6 +7,7 @@ using BaseDatabase.Entities.PayInfos;
 using BaseDatabase.Entities.UserInfos;
 using BaseDatabase.Services.BaseSettings;
 using BaseDatabase.Services.PayInfos;
+using BaseDatabase.Services.PaySettings;
 using BaseDatabase.Services.UserInfos;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -157,6 +158,50 @@ namespace BaseDataBaseTest
         public void DeleteByBaseSettingId()
         {
             var service = new BaseSettingService();
+            var model = service.GetLast();
+            if (model != null)
+            {
+                service.Delete(model.Id);
+            }
+        }
+
+        #endregion
+
+
+        #region PaySetting
+
+        [TestMethod]
+        public void InsertPaySetting()
+        {
+            var service = new PaySettingService();
+            service.Insert(new PaySetting()
+            {
+
+            });
+        }
+
+        [TestMethod]
+        public void UpdatePaySetting()
+        {
+            var service = new PaySettingService();
+
+            var model = service.GetLast();
+            model.MchId = "ddddd";
+            service.Update(model);
+        }
+
+        [TestMethod]
+        public void RemovePaySetting()
+        {
+            var service = new PaySettingService();
+
+            service.RemoveAll();
+        }
+
+        [TestMethod]
+        public void DeleteByPaySettingId()
+        {
+            var service = new PaySettingService();
             var model = service.GetLast();
             if (model != null)
             {

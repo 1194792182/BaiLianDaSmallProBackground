@@ -75,6 +75,8 @@
     <Compile Include="BaseDatabaseContext.cs" />
     <Compile Include="Entities\BaseSettings\BaseSetting.cs" />
     <Compile Include="Entities\BaseSettings\BaseSettingModel.cs" />
+    <Compile Include="Entities\BaseSettings\PaySetting.cs" />
+    <Compile Include="Entities\BaseSettings\PaySettingModel.cs" />
     <Compile Include="Entities\PayInfos\PayInfo.cs" />
     <Compile Include="Entities\PayInfos\PayInfoModel.cs" />
     <Compile Include="Entities\UserInfos\UserInfo.cs" />
@@ -82,6 +84,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\BaseSettings\BaseSettingService.cs" />
     <Compile Include="Services\BaseSettings\IBaseSettingService.cs" />
+    <Compile Include="Services\BaseSettings\IPaySettingService.cs" />
+    <Compile Include="Services\BaseSettings\PaySettingService.cs" />
     <Compile Include="Services\PayInfos\IPayInfoService.cs" />
     <Compile Include="Services\PayInfos\PayInfoService.cs" />
     <Compile Include="Services\UserInfos\IUserInfoService.cs" />

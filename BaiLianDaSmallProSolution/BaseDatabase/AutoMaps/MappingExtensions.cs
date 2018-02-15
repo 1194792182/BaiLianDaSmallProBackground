@@ -81,5 +81,25 @@ namespace BaseDatabase.AutoMaps
         }
 
         #endregion
+
+        #region PaySetting
+
+        public static PaySetting ToEntity(this PaySettingModel model)
+        {
+            return Mapper.Map<PaySettingModel, PaySetting>(model);
+        }
+
+        public static PaySetting ToEntity(this PaySettingModel model, PaySetting destination)
+        {
+            return Mapper.Map(model, destination);
+        }
+
+        public static PaySettingModel ToModel(this PaySetting entity)
+        {
+            var model = Mapper.Map<PaySetting, PaySettingModel>(entity);
+            return model;
+        }
+
+        #endregion
     }
 }

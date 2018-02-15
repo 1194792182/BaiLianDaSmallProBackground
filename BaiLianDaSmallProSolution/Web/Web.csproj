@@ -130,6 +130,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PayController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -139,6 +140,9 @@
     <Compile Include="Models\Bases\OpenIdModel.cs" />
     <Compile Include="Models\Bases\UpdateBaseInfoModel.cs" />
     <Compile Include="Models\MyException.cs" />
+    <Compile Include="Models\MyProException.cs" />
+    <Compile Include="Models\Pays\PayModel.cs" />
+    <Compile Include="Models\Pays\PayParamModel.cs" />
     <Compile Include="Models\Users\UserInfoModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

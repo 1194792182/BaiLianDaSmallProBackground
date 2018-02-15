@@ -22,5 +22,7 @@ namespace BaseDatabase
         public DbSet<BaseSetting> BaseSettings { get; set; }
 
         public DbSet<PayInfo> PayInfos { get; set; }
+
+        public DbSet<PaySetting> PaySettings { get; set; }
     }
 }

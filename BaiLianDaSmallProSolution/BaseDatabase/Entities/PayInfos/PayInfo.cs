@@ -15,6 +15,8 @@ namespace BaseDatabase.Entities.PayInfos
 
         public virtual UserInfo UserInfo { get; set; }
 
+        public decimal Amount { get; set; }
+
         public bool IsPay { get; set; }
 
         public string TradeNo { get; set; }

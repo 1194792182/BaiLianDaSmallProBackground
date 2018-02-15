@@ -37,6 +37,13 @@ namespace BaseDatabase.AutoMaps
                 cfg.CreateMap<BaseSettingModel, BaseSetting>();
 
                 #endregion
+
+                #region PaySetting
+
+                cfg.CreateMap<PaySetting, PaySettingModel>();
+                cfg.CreateMap<PaySettingModel, PaySetting>();
+
+                #endregion
             });
         }
     }
