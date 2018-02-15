@@ -87,5 +87,23 @@ namespace BaseDatabase.Services.PayInfos
                 return entity.ToModel();
             }
         }
+
+        public PayInfo GetHasPayedPayInfoBySerialNumber(string tradeNo)
+        {
+            using (var db = new BaseDatabaseContext())
+            {
+                var entity = db.PayInfos.FirstOrDefault(q => q.IsPay && q.TradeNo == tradeNo);
+                return entity;
+            }
+        }
+
+        public PayInfoModel GetUnpayPayInfoBySerialNumber(string tradeNo)
+        {
+            using (var db = new BaseDatabaseContext())
+            {
+                var entity = db.PayInfos.OrderByDescending(q => q.Id).FirstOrDefault(q => !q.IsPay && q.TradeNo == tradeNo);
+                return entity.ToModel();
+            }
+        }
     }
 }

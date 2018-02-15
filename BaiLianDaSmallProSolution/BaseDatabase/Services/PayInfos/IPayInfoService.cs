@@ -20,5 +20,9 @@ namespace BaseDatabase.Services.PayInfos
         void RemoveAll();
 
         PayInfoModel GetLast();
+
+        PayInfo GetHasPayedPayInfoBySerialNumber(string tradeNo);
+
+        PayInfoModel GetUnpayPayInfoBySerialNumber(string tradeNo);
     }
 }

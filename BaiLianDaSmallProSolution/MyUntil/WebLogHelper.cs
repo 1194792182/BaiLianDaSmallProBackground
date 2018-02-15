@@ -18,60 +18,75 @@ namespace MyUntil
         public static void WebLog(string userCode = "000001", string userName = "Admin", string loginIp = "127.0.0.1"
             , int type = 1, string operation = "普通操作", string remark = "")
         {
-            var dic = new Dictionary<string, string>();
-            dic.Add("UserCode", userCode);
-            dic.Add("UserName", userName);
-            dic.Add("LoginIP", loginIp);
-            dic.Add("Type", type.ToString());
-            dic.Add("Operation", operation);
-            dic.Add("Remark", remark);
-            dic.Add("DateTime", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-
-            var queryStr = GetQueryStr(dic);
-
-            var response = CreatePostHttpResponse(_logUrl, queryStr, Encoding.UTF8);
-            if (response != null)
+            try
             {
-                var stream = response.GetResponseStream(); //获取响应的字符串流
-                if (stream != null)
+                var dic = new Dictionary<string, string>();
+                dic.Add("UserCode", userCode);
+                dic.Add("UserName", userName);
+                dic.Add("LoginIP", loginIp);
+                dic.Add("Type", type.ToString());
+                dic.Add("Operation", operation);
+                dic.Add("Remark", remark);
+                dic.Add("DateTime", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+
+                var queryStr = GetQueryStr(dic);
+
+                var response = CreatePostHttpResponse(_logUrl, queryStr, Encoding.UTF8);
+                if (response != null)
                 {
-                    var sr = new StreamReader(stream); //创建一个stream读取流  
-                    var str = sr.ReadToEnd();
-                    Console.WriteLine(str);
+                    var stream = response.GetResponseStream(); //获取响应的字符串流
+                    if (stream != null)
+                    {
+                        var sr = new StreamReader(stream); //创建一个stream读取流  
+                        var str = sr.ReadToEnd();
+                    }
                 }
+            }
+            catch
+            {
+                
             }
         }
 
         public static void WebLog(string msg)
         {
-            var dic = new Dictionary<string, string>();
-            dic.Add("Remark", msg);
-            var queryStr = GetQueryStr(dic);
-            var response = CreatePostHttpResponse(_logUrl, queryStr, Encoding.UTF8);
-            if (response != null)
+            try
             {
-                var stream = response.GetResponseStream(); //获取响应的字符串流
-                if (stream != null)
+                var dic = new Dictionary<string, string>();
+                dic.Add("Remark", msg);
+                var queryStr = GetQueryStr(dic);
+                var response = CreatePostHttpResponse(_logUrl, queryStr, Encoding.UTF8);
+                if (response != null)
                 {
-                    var sr = new StreamReader(stream); //创建一个stream读取流  
-                    var str = sr.ReadToEnd();
-                    Console.WriteLine(str);
+                    var stream = response.GetResponseStream(); //获取响应的字符串流
+                    if (stream != null)
+                    {
+                        var sr = new StreamReader(stream); //创建一个stream读取流  
+                        var str = sr.ReadToEnd();
+                    }
                 }
+            }
+            catch
+            {
+                
             }
         }
 
         public static string GetWebLog(int pageIndex = 0, int pageSize = 10)
         {
-            var dic = new Dictionary<string, string>();
-            dic.Add("pageIndex", pageIndex.ToString());
-            dic.Add("pageSize", pageSize.ToString());
-            var queryStr = GetQueryStr(dic);
-
-            var result = HttpGet(_logUrl + "?" + queryStr, Encoding.UTF8);
-
-            Console.WriteLine(result);
-            Console.ReadLine();
-
+            var result = "";
+            try
+            {
+                var dic = new Dictionary<string, string>();
+                dic.Add("pageIndex", pageIndex.ToString());
+                dic.Add("pageSize", pageSize.ToString());
+                var queryStr = GetQueryStr(dic);
+                result = HttpGet(_logUrl + "?" + queryStr, Encoding.UTF8);
+            }
+            catch
+            {
+                
+            }
             return result;
         }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Security;
@@ -92,6 +93,14 @@ namespace MyUntil
         {
             var ts = DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0);
             return Convert.ToInt64(ts.TotalSeconds).ToString();
+        }
+
+        public string GetInputStreamStr(Stream stream)
+        {
+            var intLen = Convert.ToInt32(stream.Length);
+            var b = new byte[intLen];
+            stream.Read(b, 0, intLen);
+            return Encoding.UTF8.GetString(b);
         }
     }
 }
