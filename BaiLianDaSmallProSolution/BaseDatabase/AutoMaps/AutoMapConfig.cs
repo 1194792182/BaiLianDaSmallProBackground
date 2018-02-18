@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BaseDatabase.AutoMaps.Admins;
 using BaseDatabase.Entities.BaseSettings;
 using BaseDatabase.Entities.PayInfos;
 using BaseDatabase.Entities.UserInfos;
@@ -44,6 +45,8 @@ namespace BaseDatabase.AutoMaps
                 cfg.CreateMap<PaySettingModel, PaySetting>();
 
                 #endregion
+
+                SetAdminMap.Config(cfg);
             });
         }
     }

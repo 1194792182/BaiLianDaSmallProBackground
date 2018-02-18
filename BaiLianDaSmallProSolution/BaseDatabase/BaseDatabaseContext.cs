@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BaseDatabase
 {
-    public class BaseDatabaseContext : DbContext
+    public partial class BaseDatabaseContext : DbContext
     {
         public BaseDatabaseContext() : base("baseDbConn")
         {
@@ -24,5 +24,6 @@ namespace BaseDatabase
         public DbSet<PayInfo> PayInfos { get; set; }
 
         public DbSet<PaySetting> PaySettings { get; set; }
+
     }
 }

@@ -111,6 +111,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\LayUI\Content\commonJs\myAjax.js" />
     <Content Include="Areas\LayUI\Content\LayUI\css\layui.css" />
     <Content Include="Areas\LayUI\Content\LayUI\css\layui.mobile.css" />
     <Content Include="Areas\LayUI\Content\LayUI\css\modules\code.css" />
@@ -320,7 +321,9 @@
     <Compile Include="Areas\LayUI\Controllers\LayUiMenuController.cs" />
     <Compile Include="Areas\LayUI\Controllers\LayUiSystemController.cs" />
     <Compile Include="Areas\LayUI\LayUIAreaRegistration.cs" />
+    <Compile Include="Areas\LayUI\Models\BaseReturnModel.cs" />
     <Compile Include="Areas\LayUI\Models\Menus\MenuModel.cs" />
+    <Compile Include="Areas\LayUI\Models\Systems\CheckOldPwdModel.cs" />
     <Compile Include="Areas\LayUI\MyAreasModule\MyConsts.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />

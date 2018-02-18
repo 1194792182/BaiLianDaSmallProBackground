@@ -29,17 +29,6 @@ namespace BaseDataBaseTest
            
         }
 
-
-        [TestMethod]
-        public void TestMethod1()
-        {
-            var context = new BaseDatabaseContext();
-
-            var script = ((IObjectContextAdapter)context).ObjectContext.CreateDatabaseScript();
-
-            Assert.IsTrue(!string.IsNullOrWhiteSpace(script));
-        }
-
         #region UserInfo
 
         [TestMethod]

@@ -69,10 +69,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutoMaps\Admins\AdminMappingExtensions.cs" />
+    <Compile Include="AutoMaps\Admins\SetAdminMap.cs" />
     <Compile Include="AutoMaps\AutoMapConfig.cs" />
     <Compile Include="AutoMaps\MappingExtensions.cs" />
+    <Compile Include="BaseDatabaseAdminContext.cs" />
     <Compile Include="BaseDatabaseConfig.cs" />
     <Compile Include="BaseDatabaseContext.cs" />
+    <Compile Include="Entities\Admins\AdminUserInfos\AdminUserInfo.cs" />
+    <Compile Include="Entities\Admins\AdminUserInfos\AdminUserInfoModel.cs" />
     <Compile Include="Entities\BaseSettings\BaseSetting.cs" />
     <Compile Include="Entities\BaseSettings\BaseSettingModel.cs" />
     <Compile Include="Entities\BaseSettings\PaySetting.cs" />
@@ -82,6 +87,8 @@
     <Compile Include="Entities\UserInfos\UserInfo.cs" />
     <Compile Include="Entities\UserInfos\UserInfoModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Admins\AdminUserInfos\AdminUserInfoService.cs" />
+    <Compile Include="Services\Admins\AdminUserInfos\IAdminUserInfoService.cs" />
     <Compile Include="Services\BaseSettings\BaseSettingService.cs" />
     <Compile Include="Services\BaseSettings\IBaseSettingService.cs" />
     <Compile Include="Services\BaseSettings\IPaySettingService.cs" />

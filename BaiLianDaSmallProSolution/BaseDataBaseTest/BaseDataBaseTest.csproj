@@ -55,6 +55,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admins\AdminUserInfos\AdminUserInfoUnitTest.cs" />
+    <Compile Include="CreateScriptStrUnitTest.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
