@@ -26,6 +26,14 @@ layui.config({
         $(this).parent("li").siblings().removeClass("layui-nav-itemed");
     });
 
+    $("body").on("click", ".top_menu .layui-nav-item .layui-nav-child a", function () {
+        if ($(this).data('type') && $(this).data('type') == "action") {
+            window.location = $(this).data('url');
+        } else {
+            addTab($(this));
+        }
+    });
+
     //刷新后还原打开的窗口
     if (window.sessionStorage.getItem("menu") != null) {
         var menu = JSON.parse(window.sessionStorage.getItem("menu"));

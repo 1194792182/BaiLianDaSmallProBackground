@@ -12,21 +12,14 @@
                 <li class="layui-nav-item top_menu_item" pc data-module-id="1">
                     <a href="javascript:;"><cite>系统</cite></a>
                 </li>
-                <li class="layui-nav-item" mobile data-menu-id="0">
-                    <a href="javascript:;" data-url="page/user/changePwd.html"><i class="iconfont icon-shezhi1" data-icon="icon-shezhi1"></i><cite>设置</cite></a>
-                </li>
-                <li class="layui-nav-item" mobile data-menu-id="0">
-                    <a href="javascript:;"><i class="iconfont icon-loginout"></i> 退出</a>
-                </li>
                 <li class="layui-nav-item" pc style="float:right;">
                     <a href="javascript:;">
                         <img src="@imgSrc/face.jpg" class="layui-circle" width="35" height="35">
-                        <cite>Darren</cite>
+                        <cite>@ViewBag.UserName</cite>
                     </a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;" data-url=""><i class="iconfont icon-zhanghu" data-icon="icon-zhanghu"></i><cite>个人资料</cite></a></dd>
-                        <dd><a href="javascript:;" data-url=""><i class="iconfont icon-shezhi1" data-icon="icon-shezhi1"></i><cite>修改密码</cite></a></dd>
-                        <dd><a href="javascript:;" data-url=""><i class="iconfont icon-loginout"></i><cite>退出</cite></a></dd>
+                        <dd><a href="javascript:;" data-url="/layui/LayUiSystem/changepwd"><i class="iconfont icon-shezhi1" data-icon="icon-shezhi1"></i><cite>修改密码</cite></a></dd>
+                        <dd><a href="javascript:;" data-url="/layui/LayUiAdminLogin/LogOut" data-type="action"><i class="iconfont icon-loginout"></i><cite>退出</cite></a></dd>
                     </dl>
                 </li>
             </ul>
@@ -36,7 +29,7 @@
     <div class="layui-side layui-bg-black">
         <div class="user-photo">
             <a class="img" title="我的头像"><img src="@imgSrc/face.jpg"></a>
-            <p>你好！<span class="userName">Darren</span>, 欢迎登录</p>
+            <p>你好！<span class="userName">@ViewBag.UserName</span>, 欢迎登录</p>
         </div>
         <div class="navBar layui-side-scroll"></div>
     </div>
@@ -56,7 +49,7 @@
     <!-- 底部 -->
     <div class="layui-footer footer">
         <p>
-            copyright @@2017 Darren
+            copyright @@2018 Darren
         </p>
     </div>
 </div>

@@ -1,6 +1,7 @@
 ﻿@using Web.Areas.LayUI.MyAreasModule;
 @{
     var basePath = MyConsts.BaseContentPath;
+    var contentPath = MyConsts.ContentPath;
 }
 
 <!DOCTYPE html>
@@ -20,6 +21,7 @@
     <![endif]-->
     @RenderBody()
     <script src="@(basePath)layui.js"></script>
+    <script src="@(contentPath)toolJs/dateHelper.js"></script>
     @RenderSection("footerJs", false)
 </body>
 </html>

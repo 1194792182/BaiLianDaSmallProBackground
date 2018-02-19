@@ -112,6 +112,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\LayUI\Content\commonJs\myAjax.js" />
+    <Content Include="Areas\LayUI\Content\commonJs\myFormat.js" />
     <Content Include="Areas\LayUI\Content\LayUI\css\layui.css" />
     <Content Include="Areas\LayUI\Content\LayUI\css\layui.mobile.css" />
     <Content Include="Areas\LayUI\Content\LayUI\css\modules\code.css" />
@@ -219,6 +220,7 @@
     <Content Include="Areas\LayUI\Content\LayUI\lay\modules\tree.js" />
     <Content Include="Areas\LayUI\Content\LayUI\lay\modules\upload.js" />
     <Content Include="Areas\LayUI\Content\LayUI\lay\modules\util.js" />
+    <Content Include="Areas\LayUI\Content\toolJs\dateHelper.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\font_eolqem241z66flxr.css" />
@@ -305,6 +307,9 @@
     <Content Include="Content\layui\font\iconfont.eot" />
     <Content Include="Content\layui\font\iconfont.ttf" />
     <Content Include="Content\layui\font\iconfont.woff" />
+    <Content Include="Areas\LayUI\Views\LayUiAdminUserInfo\Index.cshtml" />
+    <Content Include="Areas\LayUI\Views\LayUiAdminUserInfo\Add.cshtml" />
+    <Content Include="Areas\LayUI\Views\LayUiAdminLogin\Login.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -317,20 +322,27 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminHomeController.cs" />
+    <Compile Include="Areas\LayUI\Controllers\LayUiAdminLoginController.cs" />
+    <Compile Include="Areas\LayUI\Controllers\LayUiAdminUserInfoController.cs" />
     <Compile Include="Areas\LayUI\Controllers\LayUiHomeController.cs" />
     <Compile Include="Areas\LayUI\Controllers\LayUiMenuController.cs" />
     <Compile Include="Areas\LayUI\Controllers\LayUiSystemController.cs" />
     <Compile Include="Areas\LayUI\LayUIAreaRegistration.cs" />
     <Compile Include="Areas\LayUI\Models\BaseReturnModel.cs" />
+    <Compile Include="Areas\LayUI\Models\ListResult.cs" />
+    <Compile Include="Areas\LayUI\Models\ListSearch.cs" />
     <Compile Include="Areas\LayUI\Models\Menus\MenuModel.cs" />
     <Compile Include="Areas\LayUI\Models\Systems\CheckOldPwdModel.cs" />
     <Compile Include="Areas\LayUI\MyAreasModule\MyConsts.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PayController.cs" />
+    <Compile Include="Filters\AdminAuthorizeAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\BaseAdminWebController.cs" />
+    <Compile Include="Infrastructure\CurrentWebContext.cs" />
     <Compile Include="Models\BaseReturnModel.cs" />
     <Compile Include="Models\Bases\AccessTokenModel.cs" />
     <Compile Include="Models\Bases\ErrorModel.cs" />

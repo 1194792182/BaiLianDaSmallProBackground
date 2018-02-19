@@ -15,6 +15,13 @@ namespace Web.Areas.LayUI
         public override void RegisterArea(AreaRegistrationContext context) 
         {
             context.MapRoute(
+                "adminLogin",
+                "admin/login",
+                new { controller = "LayUiAdminLogin", action = "Login" },
+                new[] { "Web.Areas.LayUI.Controllers" }
+            );
+
+            context.MapRoute(
                 "LayUI_default",
                 "LayUI/{controller}/{action}/{id}",
                 new { controller = "LayUiHome", action = "Index", id = UrlParameter.Optional },

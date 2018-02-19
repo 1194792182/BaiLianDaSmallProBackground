@@ -8,6 +8,10 @@ namespace BaseDatabase.Entities.Admins.AdminUserInfos
 {
     public class AdminUserInfo
     {
+        public AdminUserInfo()
+        {
+            LoginSuccessTimes = 0;
+        }
         public int Id { get; set; }
 
         public string UserName { get; set; }
@@ -17,5 +21,11 @@ namespace BaseDatabase.Entities.Admins.AdminUserInfos
         public string PwdSalt { get; set; }
 
         public DateTime CreateOn { get; set; }
+
+        public DateTime? LastLoginDate { get; set; }
+
+        public int? LoginSuccessTimes { get; set; }
+
+        public string LastLoginIp { get; set; }
     }
 }

@@ -4,10 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Web.Areas.LayUI.Models.Menus;
+using Web.Infrastructure;
 
 namespace Web.Areas.LayUI.Controllers
 {
-    public class LayUiMenuController : Controller
+    public class LayUiMenuController : BaseAdminWebController
     {
         [HttpPost]
         public ActionResult GetMenuJson()
@@ -24,7 +25,15 @@ namespace Web.Areas.LayUI.Controllers
                 },
                 new MenuModel()
                 {
-                    Title = "密码修改",
+                    Title = "系统用户",
+                    Icon = "icon-barrage",
+                    Href = "/layui/LayUiAdminUserInfo/index",
+                    Spread = false,
+                    ModuleId = 1
+                },
+                new MenuModel()
+                {
+                    Title = "修改密码",
                     Icon = "icon-barrage",
                     Href = "/layui/LayUiSystem/changepwd",
                     Spread = false,

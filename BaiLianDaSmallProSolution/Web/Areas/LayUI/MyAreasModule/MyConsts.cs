@@ -8,5 +8,7 @@ namespace Web.Areas.LayUI.MyAreasModule
     public class MyConsts
     {
         public const string BaseContentPath = "/Areas/LayUI/Content/LayUI/";
+
+        public const string ContentPath = "/Areas/LayUI/Content/";
     }
 }

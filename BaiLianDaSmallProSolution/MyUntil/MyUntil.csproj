@@ -45,9 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EncryptHelper.cs" />
+    <Compile Include="IpAddressHelper.cs" />
     <Compile Include="PayHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestUtilityHelper.cs" />
+    <Compile Include="StringHelper.cs" />
     <Compile Include="WebLogHelper.cs" />
   </ItemGroup>
   <ItemGroup>

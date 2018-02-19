@@ -1,4 +1,5 @@
 ﻿using BaseDatabase.Entities.Admins.AdminUserInfos;
+using BaseDatabase.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,5 +21,13 @@ namespace BaseDatabase.Services.Admins.AdminUserInfos
         void RemoveAll();
 
         AdminUserInfoModel GetLast();
+
+        IPageList<AdminUserInfo> GetPageList(int page, int size);
+
+        bool IsExistUserName(string userName);
+
+        AdminUserInfoModel GetByUserName(string userName);
+
+        void SetLoginInfo(string userName, string ip);
     }
 }

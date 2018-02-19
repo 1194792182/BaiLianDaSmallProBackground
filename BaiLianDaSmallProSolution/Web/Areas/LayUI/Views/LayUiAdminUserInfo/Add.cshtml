@@ -1,42 +1,43 @@
 ﻿
 @{
-    ViewBag.Title = "修改密码";
+    ViewBag.Title = "新增系统管理员";
 }
+
 @section headerCss{
 
 }
-<blockquote class="layui-elem-quote">说明：修改您的密码</blockquote>
+<blockquote class="layui-elem-quote">说明：对系统管理员进行管理</blockquote>
 
 <fieldset class="layui-elem-field layui-field-title">
-    <legend>修改密码</legend>
+    <legend>新增系统管理员</legend>
 </fieldset>
-
 <div class="layui-container">
-    <form class="layui-form layui-form-pane" action="">
+    <form class="layui-form layui-form-pane">
         <div class="layui-form-item">
-            <label class="layui-form-label">原始密码</label>
+            <label class="layui-form-label">用户名</label>
             <div class="layui-input-inline">
-                <input type="password" name="oldPassword" required lay-verify="required|verifyOldPwd" placeholder="请输入旧密码" autocomplete="off" class="layui-input">
+                <input name="UserName" required lay-verify="required|checkUnique" placeholder="请输入用户名" autocomplete="off" class="layui-input">
             </div>
-            <div class="layui-form-mid layui-word-aux">必填项</div>
+            <div class="layui-form-mid layui-word-aux">必填项，不能与现有的用户名重复</div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">新的密码</label>
+            <label class="layui-form-label">密码</label>
             <div class="layui-input-inline">
-                <input id="pwd" type="password" name="newPassword" required lay-verify="required|pass" placeholder="请输入新的密码" autocomplete="off" class="layui-input">
+                <input id="pwd" type="password" name="Password" required lay-verify="required|pass" placeholder="请输入密码" autocomplete="off" class="layui-input">
             </div>
             <div class="layui-form-mid layui-word-aux">必填项，密码长度为6到12位</div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">确认密码</label>
             <div class="layui-input-inline">
-                <input type="password" name="confirmPassword" required lay-verify="required|pass|checkIsSameToPwd" placeholder="请输入确认密码" autocomplete="off" class="layui-input">
+                <input type="password" name="ConfirmPassword" required lay-verify="required|checkIsSameToPwd" placeholder="请输入确认密码" autocomplete="off" class="layui-input">
             </div>
             <div class="layui-form-mid layui-word-aux">必填项，密码长度为6到12位,与密码相同</div>
         </div>
 
         <div class="layui-form-item">
-            <button class="layui-btn" lay-submit lay-filter="changePwd">立即修改</button>
+            <button class="layui-btn" lay-submit lay-filter="saveAdminUserInfo">保存</button>
+            <a class="layui-btn" href="/layui/LayUiAdminUserInfo/index">返回列表</a>
         </div>
 
     </form>
@@ -51,17 +52,17 @@
         });
     </script>
     <script>
+        //Demo
         layui.use(['form', 'jquery', 'myAjax'], function () {
             var form = layui.form;
             var $ = layui.jquery;
             var aj = layui.myAjax;
 
             form.verify({
-                verifyOldPwd: function (value) {
+                checkUnique: function (value) {
                     var errMsg;
-                    //return '请输入正确的旧密码';
-                    aj.postSyncReq('/layui/LayUiSystem/CheckOldPwd'
-                        , { oldPwd: $.trim(value) }
+                    aj.postSyncReq('/layui/LayUiAdminUserInfo/CheckUserName'
+                        , { userName: $.trim(value) }
                         , function (data) {
                             aj.dealResult(data, function () {
                                 errMsg = undefined;
@@ -72,8 +73,7 @@
                     if (errMsg) {
                         return errMsg;
                     }
-                }
-                ,
+                },
                 checkIsSameToPwd: function (value) {
                     if (value != $("#pwd").val()) {
                         return "两次输入的密码必须一致"
@@ -83,16 +83,19 @@
             });
 
             //监听提交
-            form.on('submit(changePwd)', function (data) {
-                aj.postNoSyncReq('/layui/LayUiSystem/ChangePwd', data.field, function (data) {
+            form.on('submit(saveAdminUserInfo)', function (data) {
+
+                aj.postNoSyncReq('/layui/LayUiAdminUserInfo/Add', data.field, function (data) {
                     aj.dealResult(data, function () {
-                        layer.msg(data.ReturnMsg, function () {
-                            if (window.parent) {
-                                window.parent.location = "/layui/LayUiAdminLogin/LogOut";
-                            }
-                        })
+                        layer.confirm(data.ReturnMsg + "，是否继续添加？", function (index) {
+                            layer.close(index);
+                            window.location = window.location;
+                        }, function () {
+                            window.location = '/layui/LayUiAdminUserInfo/index';
+                        });
                     });
                 });
+
                 return false;
             });
         });

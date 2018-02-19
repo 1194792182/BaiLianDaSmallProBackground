@@ -17,5 +17,11 @@ namespace BaseDatabase.Entities.Admins.AdminUserInfos
         public string PwdSalt { get; set; }
 
         public DateTime CreateOn { get; set; }
+
+        public DateTime? LastLoginDate { get; set; }
+
+        public int? LoginSuccessTimes { get; set; }
+
+        public string LastLoginIp { get; set; }
     }
 }
