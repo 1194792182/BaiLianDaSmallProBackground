@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BaseDatabase.Entities.Admins.AdminUserInfos;
+using BaseDatabase.Entities.Admins.AdvertisingSpaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,18 +15,36 @@ namespace BaseDatabase.AutoMaps.Admins
 
         public static AdminUserInfo ToEntity(this AdminUserInfoModel model)
         {
-            return Mapper.Map<AdminUserInfoModel, AdminUserInfo>(model);
+            return model.MapTo<AdminUserInfoModel, AdminUserInfo>();
         }
 
         public static AdminUserInfo ToEntity(this AdminUserInfoModel model, AdminUserInfo destination)
         {
-            return Mapper.Map(model, destination);
+            return model.MapTo(destination);
         }
 
         public static AdminUserInfoModel ToModel(this AdminUserInfo entity)
         {
-            var model = Mapper.Map<AdminUserInfo, AdminUserInfoModel>(entity);
-            return model;
+            return entity.MapTo<AdminUserInfo, AdminUserInfoModel>();
+        }
+
+        #endregion
+
+        #region AdvertisingSpaceInfo
+
+        public static AdvertisingSpaceInfo ToEntity(this AdvertisingSpaceInfoModel model)
+        {
+            return model.MapTo<AdvertisingSpaceInfoModel, AdvertisingSpaceInfo>();
+        }
+
+        public static AdvertisingSpaceInfo ToEntity(this AdvertisingSpaceInfoModel model, AdvertisingSpaceInfo destination)
+        {
+            return model.MapTo(destination);
+        }
+
+        public static AdvertisingSpaceInfoModel ToModel(this AdvertisingSpaceInfo entity)
+        {
+            return entity.MapTo<AdvertisingSpaceInfo, AdvertisingSpaceInfoModel>();
         }
 
         #endregion

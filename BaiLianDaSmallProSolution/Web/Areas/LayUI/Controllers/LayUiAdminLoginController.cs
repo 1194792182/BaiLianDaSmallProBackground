@@ -27,6 +27,7 @@ namespace Web.Areas.LayUI.Controllers
             return View();
         }
 
+        [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult Login(string account,string pwd)
         {

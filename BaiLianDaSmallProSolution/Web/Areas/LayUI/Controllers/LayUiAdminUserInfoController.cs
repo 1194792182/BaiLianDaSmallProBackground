@@ -27,7 +27,7 @@ namespace Web.Areas.LayUI.Controllers
 
         public ActionResult List(ListSearch search)
         {
-            var model = new ListResult<AdminUserInfo>();
+            var model = new ListResult();
 
             var list = _adminUserInfoService.GetPageList(search.pageIndex, search.limit);
 
@@ -45,7 +45,7 @@ namespace Web.Areas.LayUI.Controllers
         [HttpPost]
         public ActionResult Add(AdminUserInfoModel paraModel)
         {
-            var model = new BaseReturnModel();
+            var model = new BaseReturnModel() { IsSuccess = false, ReturnMsg = "操作失败" };
 
             var salt = StringHelper.GetSaltStr();
 
@@ -73,10 +73,12 @@ namespace Web.Areas.LayUI.Controllers
         [HttpPost]
         public ActionResult Delete(int id)
         {
-            var model = new BaseReturnModel() { IsSuccess = true, ReturnMsg = "" };
+            var model = new BaseReturnModel() { IsSuccess = false, ReturnMsg = "操作失败" };
             try
             {
                 _adminUserInfoService.Delete(id);
+                model.IsSuccess = true;
+                model.ReturnMsg = "删除完成";
             }
             catch (Exception ex)
             {
@@ -90,20 +92,28 @@ namespace Web.Areas.LayUI.Controllers
         [HttpPost]
         public ActionResult CheckUserName(string userName)
         {
-            var model = new BaseReturnModel();
+            var model = new BaseReturnModel() { IsSuccess = false, ReturnMsg = "验证失败" };
+            try
+            {
+                var isExists = _adminUserInfoService.IsExistUserName(userName);
 
-            var isExists = _adminUserInfoService.IsExistUserName(userName);
-
-            if (isExists)
+                if (isExists)
+                {
+                    model.IsSuccess = false;
+                    model.ReturnMsg = "该用户名已存在";
+                }
+                else
+                {
+                    model.IsSuccess = true;
+                    model.ReturnMsg = "";
+                }
+            }
+            catch (Exception ex)
             {
                 model.IsSuccess = false;
-                model.ReturnMsg = "该用户名已存在";
+                model.ReturnMsg = ex.Message;
             }
-            else
-            {
-                model.IsSuccess = true;
-                model.ReturnMsg = "";
-            }
+            
 
             return Json(model);
         }

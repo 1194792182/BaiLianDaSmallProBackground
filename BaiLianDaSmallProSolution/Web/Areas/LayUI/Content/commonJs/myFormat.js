@@ -29,7 +29,11 @@
 
     var currentObj = {
         'formatJsonDate': function (date) {
-            return ConvertJSONDateToJSDate(date).format("yyyy-MM-dd hh:mm:ss");
+            if (date) {
+                return ConvertJSONDateToJSDate(date).format("yyyy-MM-dd hh:mm:ss");
+            } else {
+                return "";
+            }
         }
     };
 

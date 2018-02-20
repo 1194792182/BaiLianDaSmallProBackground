@@ -310,11 +310,13 @@
     <Content Include="Areas\LayUI\Views\LayUiAdminUserInfo\Index.cshtml" />
     <Content Include="Areas\LayUI\Views\LayUiAdminUserInfo\Add.cshtml" />
     <Content Include="Areas\LayUI\Views\LayUiAdminLogin\Login.cshtml" />
+    <Content Include="Areas\LayUI\Views\LayUiAdv\AdvertisingSpaceIndex.cshtml" />
+    <Content Include="Areas\LayUI\Views\LayUiAdv\AddAdvertisingSpace.cshtml" />
+    <Content Include="Areas\LayUI\Views\LayUiAdv\EditAdvertisingSpace.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -324,6 +326,7 @@
     <Compile Include="Areas\Admin\Controllers\AdminHomeController.cs" />
     <Compile Include="Areas\LayUI\Controllers\LayUiAdminLoginController.cs" />
     <Compile Include="Areas\LayUI\Controllers\LayUiAdminUserInfoController.cs" />
+    <Compile Include="Areas\LayUI\Controllers\LayUiAdvController.cs" />
     <Compile Include="Areas\LayUI\Controllers\LayUiHomeController.cs" />
     <Compile Include="Areas\LayUI\Controllers\LayUiMenuController.cs" />
     <Compile Include="Areas\LayUI\Controllers\LayUiSystemController.cs" />

@@ -39,24 +39,24 @@ namespace Web.Areas.LayUI.Controllers
                     Spread = false,
                     ModuleId = 1
                 },
-                //new MenuModel()
-                //{
-                //    Title = "基础应用",
-                //    Icon = "icon-barrage_fill",
-                //    Href = "",
-                //    Spread = false,
-                //    ModuleId = 1,
-                //    Children = new List<ChildrenMenuModel>()
-                //    {
-                //        new ChildrenMenuModel()
-                //        {
-                //            Title = "按钮",
-                //            Icon = "icon-barrage",
-                //            Href = "/admin/layui/Button",
-                //            Spread = false,
-                //        }
-                //    }
-                //}
+                new MenuModel()
+                {
+                    Title = "广告",
+                    Icon = "icon-barrage_fill",
+                    Href = "",
+                    Spread = false,
+                    ModuleId = 2,
+                    Children = new List<ChildrenMenuModel>()
+                    {
+                        new ChildrenMenuModel()
+                        {
+                            Title = "广告位",
+                            Icon = "icon-barrage",
+                            Href = "/layui/LayUiAdv/AdvertisingSpaceIndex",
+                            Spread = false,
+                        }
+                    }
+                }
             };
             return Json(model);
         }

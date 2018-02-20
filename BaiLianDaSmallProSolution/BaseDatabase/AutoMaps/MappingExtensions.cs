@@ -12,12 +12,12 @@ namespace BaseDatabase.AutoMaps
 {
     public static class MappingExtensions
     {
-        private static TDestination MapTo<TSource, TDestination>(this TSource source)
+        public static TDestination MapTo<TSource, TDestination>(this TSource source)
         {
             return Mapper.Map<TSource, TDestination>(source);
         }
 
-        private static TDestination MapTo<TSource, TDestination>(this TSource source, TDestination destination)
+        public static TDestination MapTo<TSource, TDestination>(this TSource source, TDestination destination)
         {
             return Mapper.Map(source, destination);
         }
@@ -26,18 +26,17 @@ namespace BaseDatabase.AutoMaps
 
         public static UserInfo ToEntity(this UserInfoModel model)
         {
-            return Mapper.Map<UserInfoModel, UserInfo>(model);
+            return model.MapTo<UserInfoModel, UserInfo>();
         }
 
         public static UserInfo ToEntity(this UserInfoModel model, UserInfo destination)
         {
-            return Mapper.Map(model, destination);
+            return model.MapTo(destination);
         }
 
         public static UserInfoModel ToModel(this UserInfo entity)
         {
-            var model = Mapper.Map<UserInfo, UserInfoModel>(entity);
-            return model;
+            return entity.MapTo<UserInfo, UserInfoModel>();
         }
 
         #endregion
@@ -46,18 +45,17 @@ namespace BaseDatabase.AutoMaps
 
         public static PayInfo ToEntity(this PayInfoModel model)
         {
-            return Mapper.Map<PayInfoModel, PayInfo>(model);
+            return model.MapTo<PayInfoModel, PayInfo>();
         }
 
         public static PayInfo ToEntity(this PayInfoModel model, PayInfo destination)
         {
-            return Mapper.Map(model, destination);
+            return model.MapTo(destination);
         }
 
         public static PayInfoModel ToModel(this PayInfo entity)
         {
-            var model = Mapper.Map<PayInfo, PayInfoModel>(entity);
-            return model;
+            return entity.MapTo<PayInfo, PayInfoModel>();
         }
 
         #endregion
@@ -66,18 +64,17 @@ namespace BaseDatabase.AutoMaps
 
         public static BaseSetting ToEntity(this BaseSettingModel model)
         {
-            return Mapper.Map<BaseSettingModel, BaseSetting>(model);
+            return model.MapTo<BaseSettingModel, BaseSetting>();
         }
 
         public static BaseSetting ToEntity(this BaseSettingModel model, BaseSetting destination)
         {
-            return Mapper.Map(model, destination);
+            return model.MapTo(destination);
         }
 
         public static BaseSettingModel ToModel(this BaseSetting entity)
         {
-            var model = Mapper.Map<BaseSetting, BaseSettingModel>(entity);
-            return model;
+            return entity.MapTo<BaseSetting, BaseSettingModel>();
         }
 
         #endregion
@@ -86,18 +83,17 @@ namespace BaseDatabase.AutoMaps
 
         public static PaySetting ToEntity(this PaySettingModel model)
         {
-            return Mapper.Map<PaySettingModel, PaySetting>(model);
+            return model.MapTo<PaySettingModel, PaySetting>();
         }
 
         public static PaySetting ToEntity(this PaySettingModel model, PaySetting destination)
         {
-            return Mapper.Map(model, destination);
+            return model.MapTo(destination);
         }
 
         public static PaySettingModel ToModel(this PaySetting entity)
         {
-            var model = Mapper.Map<PaySetting, PaySettingModel>(entity);
-            return model;
+            return entity.MapTo<PaySetting, PaySettingModel>();
         }
 
         #endregion

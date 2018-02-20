@@ -66,7 +66,7 @@ namespace BaseDatabase.Services.Admins.AdminUserInfos
                 {
                     throw new Exception("oldEntity is null");
                 }
-                oldEntity = model.ToEntity(db.AdminUserInfos.Find(model.Id));
+                oldEntity = model.ToEntity(oldEntity);
                 db.SaveChanges();
             }
         }

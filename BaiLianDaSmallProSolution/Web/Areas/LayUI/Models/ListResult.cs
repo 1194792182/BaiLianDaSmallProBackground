@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Web.Areas.LayUI.Models
 {
-    public class ListResult<T>
+    public class ListResult
     {
         public int code { get; set; }
 
@@ -13,6 +13,6 @@ namespace Web.Areas.LayUI.Models
 
         public string msg { get; set; }
 
-        public IEnumerable<T> data { get; set; }
+        public IEnumerable<object> data { get; set; }
     }
 }

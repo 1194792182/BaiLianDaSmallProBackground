@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EncryptHelper.cs" />
+    <Compile Include="EnumHelper.cs" />
     <Compile Include="IpAddressHelper.cs" />
     <Compile Include="PayHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

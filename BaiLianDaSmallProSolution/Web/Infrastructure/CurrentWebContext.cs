@@ -82,7 +82,10 @@ namespace Web.Infrastructure
                 }
                 else
                 {
-                    _loginAdminUser = GetAdminUserInfo();
+                    //_loginAdminUser = GetAdminUserInfo();
+                    ///todo:发布前记得替换以下语句
+                    //非正式环境下使用它
+                    _loginAdminUser= _adminUserInfoService.GetByUserName("admin");
                 }
 
                 return _loginAdminUser;

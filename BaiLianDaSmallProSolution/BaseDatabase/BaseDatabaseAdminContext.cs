@@ -1,4 +1,5 @@
 ﻿using BaseDatabase.Entities.Admins.AdminUserInfos;
+using BaseDatabase.Entities.Admins.AdvertisingSpaces;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -11,5 +12,8 @@ namespace BaseDatabase
     public partial class BaseDatabaseContext : DbContext
     {
         public DbSet<AdminUserInfo> AdminUserInfos { get; set; }
+
+        public DbSet<AdvertisingSpaceInfo> AdvertisingSpaceInfos { get; set; }
+
     }
 }

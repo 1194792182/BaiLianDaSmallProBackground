@@ -46,6 +46,9 @@
                     { type: 'checkbox', fixed: 'left' },
                     { field: 'Id', width: 80, title: '序号', fixed:true }
                     , { field: 'UserName', width: 150, title: '用户名' }
+                    , { field: 'LoginSuccessTimes', width: 150, title: '登录次数' }
+                    , { field: 'LastLoginIp', width: 150, title: '登录IP' }
+                    , { field: 'LastLoginDate', width: 180, title: '最后成功登录时间', templet: "<div>{{getDate(d.LastLoginDate)}}</div>"}
                     , {
                         field: 'CreateOn', width: 180, title: '创建时间', templet: "<div>{{getDate(d.CreateOn)}}</div>"
                         }
