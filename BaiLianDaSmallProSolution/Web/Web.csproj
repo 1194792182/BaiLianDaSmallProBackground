@@ -236,14 +236,12 @@
     <Content Include="Content\font\iconfont.css" />
     <Content Include="Content\font\iconfont.js" />
     <Content Include="Content\font\iconfont.svg" />
-    <Content Include="Content\images\alipay.jpg" />
     <Content Include="Content\images\face.jpg" />
     <Content Include="Content\images\userface1.jpg" />
     <Content Include="Content\images\userface2.jpg" />
     <Content Include="Content\images\userface3.jpg" />
     <Content Include="Content\images\userface4.jpg" />
     <Content Include="Content\images\userface5.jpg" />
-    <Content Include="Content\images\wechat.jpg" />
     <Content Include="Content\js\bodyTab.js" />
     <Content Include="Content\js\index.js" />
     <Content Include="Content\js\leftNav.js" />
