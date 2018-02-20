@@ -30,21 +30,28 @@ namespace Web.Areas.LayUI.Controllers
         public ActionResult AdvertisingSpaceList(ListSearch search)
         {
             var model = new ListResult();
-
-            var list = _advertisingSpaceService.GetPageList(search.pageIndex, search.limit);
-
-            model.count = list.TotalRecords;
-            model.data = list.Datas.Select(q => new
+            try
             {
-                Id = q.Id,
-                Sign = q.Sign,
-                Title = q.Title,
-                Type = ((AdvertisingSpaceType)q.TypeId).GetEnumDescription(),
-                Width = q.Width,
-                Height = q.Height,
-                Intro = q.Intro,
-                CreateOn = q.CreateOn
-            });
+                var list = _advertisingSpaceService.GetPageList(search.pageIndex, search.limit);
+
+                model.count = list.TotalRecords;
+                model.data = list.Datas.Select(q => new
+                {
+                    Id = q.Id,
+                    Sign = q.Sign,
+                    Title = q.Title,
+                    Type = ((AdvertisingSpaceType)q.TypeId).GetEnumDescription(),
+                    Width = q.Width,
+                    Height = q.Height,
+                    Intro = q.Intro,
+                    CreateOn = q.CreateOn
+                });
+            }
+            catch (Exception ex)
+            {
+                model.code = -1;
+                model.msg = ex.Message;
+            }
 
             return Json(model, JsonRequestBehavior.AllowGet);
         }

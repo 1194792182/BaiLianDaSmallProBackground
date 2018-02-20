@@ -28,11 +28,18 @@ namespace Web.Areas.LayUI.Controllers
         public ActionResult List(ListSearch search)
         {
             var model = new ListResult();
+            try
+            {
+                var list = _adminUserInfoService.GetPageList(search.pageIndex, search.limit);
 
-            var list = _adminUserInfoService.GetPageList(search.pageIndex, search.limit);
-
-            model.count = list.TotalRecords;
-            model.data = list.Datas;
+                model.count = list.TotalRecords;
+                model.data = list.Datas;
+            }
+            catch (Exception ex)
+            {
+                model.code = -1;
+                model.msg = ex.Message;
+            }
 
             return Json(model, JsonRequestBehavior.AllowGet);
         }
