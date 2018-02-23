@@ -54,6 +54,13 @@ namespace Web.Areas.LayUI.Controllers
                             Icon = "icon-barrage",
                             Href = "/layui/LayUiAdv/AdvertisingSpaceIndex",
                             Spread = false,
+                        },
+                        new ChildrenMenuModel()
+                        {
+                            Title = "广告内容",
+                            Icon = "icon-barrage",
+                            Href = "/layui/LayUiAdv/AdvContentIndex",
+                            Spread = false,
                         }
                     }
                 }

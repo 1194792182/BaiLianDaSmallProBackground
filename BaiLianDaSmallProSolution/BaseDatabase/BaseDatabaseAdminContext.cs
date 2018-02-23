@@ -15,5 +15,6 @@ namespace BaseDatabase
 
         public DbSet<AdvertisingSpaceInfo> AdvertisingSpaceInfos { get; set; }
 
+        public DbSet<AdvContentInfo> AdvContentInfos { get; set; }
     }
 }

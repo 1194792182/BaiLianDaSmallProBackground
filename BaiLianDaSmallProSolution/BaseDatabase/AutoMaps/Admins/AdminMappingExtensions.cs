@@ -48,5 +48,24 @@ namespace BaseDatabase.AutoMaps.Admins
         }
 
         #endregion
+
+        #region AdvContentInfo
+
+        public static AdvContentInfo ToEntity(this AdvContentInfoModel model)
+        {
+            return model.MapTo<AdvContentInfoModel, AdvContentInfo>();
+        }
+
+        public static AdvContentInfo ToEntity(this AdvContentInfoModel model, AdvContentInfo destination)
+        {
+            return model.MapTo(destination);
+        }
+
+        public static AdvContentInfoModel ToModel(this AdvContentInfo entity)
+        {
+            return entity.MapTo<AdvContentInfo, AdvContentInfoModel>();
+        }
+
+        #endregion
     }
 }

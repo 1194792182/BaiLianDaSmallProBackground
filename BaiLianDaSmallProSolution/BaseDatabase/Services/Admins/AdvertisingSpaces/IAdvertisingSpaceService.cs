@@ -23,5 +23,7 @@ namespace BaseDatabase.Services.Admins.AdvertisingSpaces
         AdvertisingSpaceInfoModel GetLast();
 
         IPageList<AdvertisingSpaceInfo> GetPageList(int page, int size);
+
+        IList<AdvertisingSpaceInfo> GetListByKeys(List<string> signs);
     }
 }

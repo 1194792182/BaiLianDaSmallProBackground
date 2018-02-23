@@ -10,27 +10,27 @@ using System.Threading.Tasks;
 
 namespace BaseDatabase.Services.Admins.AdvertisingSpaces
 {
-    public class AdvertisingSpaceService : IAdvertisingSpaceService
+    public class AdvContentInfoService: IAdvContentInfoService
     {
         public void Delete(int id)
         {
             using (var db = new BaseDatabaseContext())
             {
-                var entity = db.AdvertisingSpaceInfos.FirstOrDefault(q => q.Id == id);
+                var entity = db.AdvContentInfos.FirstOrDefault(q => q.Id == id);
                 if (entity == null)
                 {
                     throw new Exception("entity is null");
                 }
-                db.AdvertisingSpaceInfos.Remove(entity);
+                db.AdvContentInfos.Remove(entity);
                 db.SaveChanges();
             }
         }
 
-        public AdvertisingSpaceInfoModel GetById(int id)
+        public AdvContentInfoModel GetById(int id)
         {
             using (var db = new BaseDatabaseContext())
             {
-                var entity = db.AdvertisingSpaceInfos.FirstOrDefault(q => q.Id == id);
+                var entity = db.AdvContentInfos.FirstOrDefault(q => q.Id == id);
                 if (entity == null)
                 {
                     return null;
@@ -39,7 +39,7 @@ namespace BaseDatabase.Services.Admins.AdvertisingSpaces
             }
         }
 
-        public void Insert(AdvertisingSpaceInfo entity)
+        public void Insert(AdvContentInfo entity)
         {
             if (entity == null)
             {
@@ -47,12 +47,12 @@ namespace BaseDatabase.Services.Admins.AdvertisingSpaces
             }
             using (var db = new BaseDatabaseContext())
             {
-                db.AdvertisingSpaceInfos.Add(entity);
+                db.AdvContentInfos.Add(entity);
                 db.SaveChanges();
             }
         }
 
-        public void Update(AdvertisingSpaceInfoModel model)
+        public void Update(AdvContentInfoModel model)
         {
             if (model == null)
             {
@@ -60,7 +60,7 @@ namespace BaseDatabase.Services.Admins.AdvertisingSpaces
             }
             using (var db = new BaseDatabaseContext())
             {
-                var oldEntity = db.AdvertisingSpaceInfos.FirstOrDefault(q => q.Id == model.Id);
+                var oldEntity = db.AdvContentInfos.FirstOrDefault(q => q.Id == model.Id);
 
                 if (oldEntity == null)
                 {
@@ -75,35 +75,26 @@ namespace BaseDatabase.Services.Admins.AdvertisingSpaces
         {
             using (var db = new BaseDatabaseContext())
             {
-                var query = db.AdvertisingSpaceInfos.AsNoTracking();
+                var query = db.AdvContentInfos.AsNoTracking();
                 query.Delete();
             }
         }
 
-        public AdvertisingSpaceInfoModel GetLast()
+        public AdvContentInfoModel GetLast()
         {
             using (var db = new BaseDatabaseContext())
             {
-                var entity = db.AdvertisingSpaceInfos.OrderByDescending(q => q.Id).FirstOrDefault();
+                var entity = db.AdvContentInfos.OrderByDescending(q => q.Id).FirstOrDefault();
                 return entity.ToModel();
             }
         }
 
-        public IPageList<AdvertisingSpaceInfo> GetPageList(int page, int size)
+        public IPageList<AdvContentInfo> GetPageList(int page, int size)
         {
             using (var db = new BaseDatabaseContext())
             {
-                var query = db.AdvertisingSpaceInfos.OrderByDescending(q => q.Id);
-                return new PageList<AdvertisingSpaceInfo>(query, page, size);
-            }
-        }
-
-        public IList<AdvertisingSpaceInfo> GetListByKeys(List<string> signs)
-        {
-            using (var db = new BaseDatabaseContext())
-            {
-                var query = db.AdvertisingSpaceInfos.Where(q => signs.Contains(q.Sign)).OrderByDescending(q => q.Id);
-                return query.ToList();
+                var query = db.AdvContentInfos.OrderByDescending(q => q.Id);
+                return new PageList<AdvContentInfo>(query, page, size);
             }
         }
     }

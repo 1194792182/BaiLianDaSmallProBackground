@@ -29,6 +29,14 @@ namespace BaseDatabase.AutoMaps.Admins
                 .ForMember(q => q.Sign, d => d.Ignore());
 
             #endregion
+
+            #region AdvContentInfo
+
+            cfg.CreateMap<AdvContentInfo, AdvContentInfoModel>();
+            cfg.CreateMap<AdvContentInfoModel, AdvContentInfo>()
+                .ForMember(q => q.CreateOn, d => d.Ignore());
+
+            #endregion
         }
     }
 }

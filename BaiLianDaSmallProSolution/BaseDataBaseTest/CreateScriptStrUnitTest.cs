@@ -27,7 +27,7 @@ namespace BaseDataBaseTest
             var context = new BaseDatabaseContext();
 
             var script = ((IObjectContextAdapter)context).ObjectContext.CreateDatabaseScript();
-
+            ///todo 生成数据库表
             Assert.IsTrue(!string.IsNullOrWhiteSpace(script));
         }
     }

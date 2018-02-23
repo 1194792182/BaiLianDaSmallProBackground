@@ -311,6 +311,7 @@
     <Content Include="Areas\LayUI\Views\LayUiAdv\AdvertisingSpaceIndex.cshtml" />
     <Content Include="Areas\LayUI\Views\LayUiAdv\AddAdvertisingSpace.cshtml" />
     <Content Include="Areas\LayUI\Views\LayUiAdv\EditAdvertisingSpace.cshtml" />
+    <Content Include="Areas\LayUI\Views\LayUiAdv\AdvContentIndex.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

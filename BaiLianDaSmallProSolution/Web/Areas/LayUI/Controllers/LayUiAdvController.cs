@@ -15,9 +15,12 @@ namespace Web.Areas.LayUI.Controllers
     {
         private readonly IAdvertisingSpaceService _advertisingSpaceService;
 
+        private readonly IAdvContentInfoService _advContentInfoService;
+
         public LayUiAdvController()
         {
             _advertisingSpaceService = new AdvertisingSpaceService();
+            _advContentInfoService = new AdvContentInfoService();
         }
 
         #region AdvertisingSpace
@@ -140,6 +143,81 @@ namespace Web.Areas.LayUI.Controllers
             try
             {
                 _advertisingSpaceService.Delete(id);
+                model.IsSuccess = true;
+                model.ReturnMsg = "删除完成";
+            }
+            catch (Exception ex)
+            {
+                model.IsSuccess = false;
+                model.ReturnMsg = ex.Message;
+            }
+
+            return Json(model);
+        }
+
+        #endregion
+
+
+
+        #region AdvContent
+
+        public ActionResult AdvContentIndex()
+        {
+            return View();
+        }
+
+        public ActionResult AdvContentList(ListSearch search)
+        {
+            var model = new ListResult();
+            try
+            {
+                var list = _advContentInfoService.GetPageList(search.pageIndex, search.limit);
+                var signs = list.Datas.Select(q => q.AdvertisingSpaceInfoSign).ToList();
+                var advSpaces = _advertisingSpaceService.GetListByKeys(signs);
+                model.count = list.TotalRecords;
+                model.data = list.Datas.Select(q =>
+                {
+                    var advSpace = advSpaces.First(d => d.Sign == q.AdvertisingSpaceInfoSign);
+                    return new
+                    {
+                        Id = q.Id,
+                        Sign = q.AdvertisingSpaceInfoSign,
+                        Title = q.Title,
+                        AdvSpaceTitle = advSpace.Title,
+                        Size = advSpace.Width.ToString() + "x" + advSpace.Height.ToString(),
+                        BeginDatetime = q.BeginDatetime,
+                        EndDateTime = q.EndDateTime,
+                        CreateOn = q.CreateOn
+                    };
+                }
+                );
+            }
+            catch (Exception ex)
+            {
+                model.code = -1;
+                model.msg = ex.Message;
+            }
+
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult AddAdvContent()
+        {
+            return View();
+        }
+
+        public ActionResult EditAdvContent(int id)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult DeleteAdvContent(int id)
+        {
+            var model = new BaseReturnModel() { IsSuccess = false, ReturnMsg = "操作失败" };
+            try
+            {
+                _advContentInfoService.Delete(id);
                 model.IsSuccess = true;
                 model.ReturnMsg = "删除完成";
             }

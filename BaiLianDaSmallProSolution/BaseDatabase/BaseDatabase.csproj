@@ -78,6 +78,8 @@
     <Compile Include="BaseDatabaseContext.cs" />
     <Compile Include="Entities\Admins\AdminUserInfos\AdminUserInfo.cs" />
     <Compile Include="Entities\Admins\AdminUserInfos\AdminUserInfoModel.cs" />
+    <Compile Include="Entities\Admins\AdvertisingSpaces\AdvContentInfo.cs" />
+    <Compile Include="Entities\Admins\AdvertisingSpaces\AdvContentInfoModel.cs" />
     <Compile Include="Entities\Admins\AdvertisingSpaces\AdvertisingSpaceInfo.cs" />
     <Compile Include="Entities\Admins\AdvertisingSpaces\AdvertisingSpaceInfoModel.cs" />
     <Compile Include="Entities\BaseSettings\BaseSetting.cs" />
@@ -93,7 +95,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Admins\AdminUserInfos\AdminUserInfoService.cs" />
     <Compile Include="Services\Admins\AdminUserInfos\IAdminUserInfoService.cs" />
+    <Compile Include="Services\Admins\AdvertisingSpaces\AdvContentInfoService.cs" />
     <Compile Include="Services\Admins\AdvertisingSpaces\AdvertisingSpaceService.cs" />
+    <Compile Include="Services\Admins\AdvertisingSpaces\IAdvContentInfoService.cs" />
     <Compile Include="Services\Admins\AdvertisingSpaces\IAdvertisingSpaceService.cs" />
     <Compile Include="Services\BaseSettings\BaseSettingService.cs" />
     <Compile Include="Services\BaseSettings\IBaseSettingService.cs" />
