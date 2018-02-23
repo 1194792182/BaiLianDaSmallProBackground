@@ -17,8 +17,7 @@ namespace Web.Controllers
 
         public ActionResult Index()
         {
-            
-            return View();
+            return new RedirectResult("/admin");
         }
     }
 }
