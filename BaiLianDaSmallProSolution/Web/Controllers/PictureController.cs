@@ -11,8 +11,6 @@ namespace Web.Controllers
 {
     public class PictureController : Controller
     {
-        private object pictureBinary;
-
         [HttpPost]
         public ActionResult SingleAsyncUpload()
         {
