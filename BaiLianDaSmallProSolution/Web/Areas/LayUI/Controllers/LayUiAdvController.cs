@@ -161,6 +161,54 @@ namespace Web.Areas.LayUI.Controllers
 
         #region AdvContent
 
+        [NonAction]
+        private void CreateAdvertisingSpaceSelectItemList()
+        {
+            var advertisingSpaceSelectItemList = new List<SelectListItem>();
+
+            var advertisingSpaceList = _advertisingSpaceService.GetList();
+
+            foreach (var item in advertisingSpaceList)
+            {
+                advertisingSpaceSelectItemList.Add(new SelectListItem()
+                {
+                    Text = item.Title,
+                    Value = item.Sign
+                });
+            }
+            ViewBag.AdvertisingSpaceSelectItemList = advertisingSpaceSelectItemList;
+        }
+
+        [NonAction]
+        private void CreateAdvContentInfoTypeSelectItemList()
+        {
+            var advContentInfoTypeSelectItemList = new List<SelectListItem>();
+            foreach (var item in AdvContentInfoType.Pic.ToDic<AdvContentInfoType>())
+            {
+                advContentInfoTypeSelectItemList.Add(new SelectListItem()
+                {
+                    Text = item.Key,
+                    Value = item.Value.ToString()
+                });
+            }
+            ViewBag.AdvContentInfoTypeSelectItemList = advContentInfoTypeSelectItemList;
+        }
+
+        [NonAction]
+        private void CreateTargetTypeSelectItemList()
+        {
+            var targetTypeSelectItemList = new List<SelectListItem>();
+            foreach (var item in TargetType.Blank.ToDic<TargetType>())
+            {
+                targetTypeSelectItemList.Add(new SelectListItem()
+                {
+                    Text = item.Key,
+                    Value = item.Value.ToString()
+                });
+            }
+            ViewBag.TargetTypeSelectItemList = targetTypeSelectItemList;
+        }
+
         public ActionResult AdvContentIndex()
         {
             return View();
@@ -203,7 +251,29 @@ namespace Web.Areas.LayUI.Controllers
 
         public ActionResult AddAdvContent()
         {
+            CreateAdvertisingSpaceSelectItemList();
+            CreateAdvContentInfoTypeSelectItemList();
+            CreateTargetTypeSelectItemList();
             return View();
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult AddAdvContent(AdvContentInfoModel paraModel, FormCollection form)
+        {
+            var model = new BaseReturnModel() { IsSuccess = false, ReturnMsg = "操作失败" };
+            try
+            {
+
+                model.IsSuccess = true;
+                model.ReturnMsg = "添加完成";
+            }
+            catch (Exception ex)
+            {
+                model.IsSuccess = false;
+                model.ReturnMsg = ex.Message;
+            }
+            return Json(model);
         }
 
         public ActionResult EditAdvContent(int id)

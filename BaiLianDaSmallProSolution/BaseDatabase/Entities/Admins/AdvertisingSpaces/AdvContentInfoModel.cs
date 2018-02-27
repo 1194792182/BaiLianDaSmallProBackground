@@ -13,30 +13,14 @@ namespace BaseDatabase.Entities.Admins.AdvertisingSpaces
         /// </summary>
         public int Id { get; set; }
 
-        /// <summary>
-        /// 标识
-        /// </summary>
-        public string Sign { get; set; }
+        public string AdvertisingSpaceInfoSign { get; set; }
 
-        /// <summary>
-        /// 广告位标题
-        /// </summary>
         public string Title { get; set; }
 
         /// <summary>
-        /// 广告位类型
+        /// 显示顺序
         /// </summary>
-        public AdvertisingSpaceType TypeId { get; set; }
-
-        /// <summary>
-        /// 宽度
-        /// </summary>
-        public int Width { get; set; }
-
-        /// <summary>
-        /// 高度
-        /// </summary>
-        public int Height { get; set; }
+        public int Order { get; set; }
 
         /// <summary>
         /// 说明
@@ -44,8 +28,22 @@ namespace BaseDatabase.Entities.Admins.AdvertisingSpaces
         public string Intro { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// 类型
         /// </summary>
+        public AdvContentInfoType Type { get; set; }
+
+        public TargetType TargetType { get; set; }
+
+        public string ContentJsonKeyword { get; set; }
+
+        public string ContentJson { get; set; }
+
+        public decimal Price { get; set; }
+
+        public DateTime BeginDatetime { get; set; }
+
+        public DateTime EndDateTime { get; set; }
+
         public DateTime CreateOn { get; set; }
     }
 }

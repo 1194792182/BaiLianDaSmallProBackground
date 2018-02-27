@@ -312,6 +312,7 @@
     <Content Include="Areas\LayUI\Views\LayUiAdv\AddAdvertisingSpace.cshtml" />
     <Content Include="Areas\LayUI\Views\LayUiAdv\EditAdvertisingSpace.cshtml" />
     <Content Include="Areas\LayUI\Views\LayUiAdv\AdvContentIndex.cshtml" />
+    <Content Include="Areas\LayUI\Views\LayUiAdv\AddAdvContent.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -339,6 +340,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PayController.cs" />
+    <Compile Include="Controllers\PictureController.cs" />
     <Compile Include="Filters\AdminAuthorizeAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -354,6 +356,7 @@
     <Compile Include="Models\MyProException.cs" />
     <Compile Include="Models\Pays\PayModel.cs" />
     <Compile Include="Models\Pays\PayParamModel.cs" />
+    <Compile Include="Models\Pictures\PictureModel.cs" />
     <Compile Include="Models\Users\UserInfoModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

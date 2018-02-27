@@ -98,6 +98,15 @@ namespace BaseDatabase.Services.Admins.AdvertisingSpaces
             }
         }
 
+        public IList<AdvertisingSpaceInfo> GetList()
+        {
+            using (var db = new BaseDatabaseContext())
+            {
+                var query = db.AdvertisingSpaceInfos.OrderByDescending(q => q.Id);
+                return query.ToList();
+            }
+        }
+
         public IList<AdvertisingSpaceInfo> GetListByKeys(List<string> signs)
         {
             using (var db = new BaseDatabaseContext())
