@@ -61,7 +61,7 @@
                         <i class="layui-icon">&#xe67c;</i>上传图片
                     </button>
                     <div class="layui-upload-list">
-                        <input type="hidden" id="hidPicSrc" lay-verify="imgUpload" name="PicUrl" />
+                        <input type="hidden" id="hidPicSrc" name="PicUrl" lay-verify="imgUpload" />
                         <img class="layui-upload-img" id="advImg" style="width:113px;">
                         <img id="advImgHide" style="display:none;">
                         <p id="advImgContent"></p>
@@ -71,21 +71,42 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">图片描述</label>
                 <div class="layui-input-block">
-                    <input name="ImageAlt" placeholder="请输入图片描述" autocomplete="off" class="layui-input">
+                    <input name="PicImageAlt" id="PicImageAlt" placeholder="请输入图片描述" autocomplete="off" class="layui-input" lay-verify="required">
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">链接地址</label>
                 <div class="layui-input-block">
-                    <input name="Link" placeholder="请输入链接地址" autocomplete="off" class="layui-input">
+                    <input name="PicLink" id="PicLink" placeholder="请输入链接地址" autocomplete="off" class="layui-input" lay-verify="required">
                 </div>
             </div>
         </div>
 
         <div id="wordDiv" style="display:none" class="showHideDiv">
-
-
-
+            <div class="layui-form-item">
+                <label class="layui-form-label">文字内容</label>
+                <div class="layui-input-block">
+                    <input name="WordTitle" id="WordTitle" placeholder="请输入文字内容" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">文字大小</label>
+                <div class="layui-input-block">
+                    <input name="WordSize" id="WordSize" placeholder="请输入文字大小，单位为px" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">文字颜色</label>
+                <div class="layui-input-block">
+                    <input name="WordColor" id="WordColor" placeholder="请输入文字颜色，如#FFFFFF" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">链接地址</label>
+                <div class="layui-input-block">
+                    <input name="WordLink" id="WordLink" placeholder="请输入链接地址" autocomplete="off" class="layui-input">
+                </div>
+            </div>
         </div>
 
 
@@ -95,6 +116,40 @@
                 <textarea id="intro" placeholder="请输入内容" lay-verify="content" name="Intro" class="layui-textarea"></textarea>
             </div>
         </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">价格</label>
+            <div class="layui-input-block">
+                <input name="Price" required lay-verify="required|number" placeholder="请输入价格，单位为：元" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">开始时间</label>
+            <div class="layui-input-block">
+                <input name="BeginDatetime" id="beginTime" required lay-verify="required" placeholder="yyyy-MM-dd HH:mm:ss" autocomplete="off" class="layui-input" value="@ViewBag.Begin">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">结束时间</label>
+            <div class="layui-input-block">
+                <input name="EndDateTime" id="endTime" required lay-verify="required" placeholder="yyyy-MM-dd HH:mm:ss" autocomplete="off" class="layui-input" value="@ViewBag.End">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">目标窗口</label>
+            <div class="layui-input-block">
+                <select name="TargetType" lay-verify="" lay-search>
+                    @foreach (var item in ViewBag.TargetTypeSelectItemList as List<SelectListItem>)
+                    {
+                        <option value="@item.Value">@item.Text</option>
+                    }
+                </select>
+            </div>
+        </div>
+
         <div class="layui-form-item">
             <button class="layui-btn" lay-submit lay-filter="save">保存</button>
             <a class="layui-btn" href="/layui/LayUiAdv/AdvertisingSpaceIndex">返回列表</a>
@@ -113,12 +168,24 @@
     </script>
     <script>
         //Demo
-        layui.use(['form', 'layedit', 'upload', 'jquery', 'myAjax'], function () {
+        layui.use(['form', 'layedit', 'upload','laydate', 'jquery', 'myAjax'], function () {
             var form = layui.form;
             var $ = layui.jquery;
             var aj = layui.myAjax;
             var upload = layui.upload;
+            var laydate = layui.laydate;
 
+            laydate.render({
+                elem: '#beginTime'
+                , type: 'datetime'
+                , format: 'yyyy-MM-dd HH:mm:ss'
+            });
+
+            laydate.render({
+                elem: '#endTime'
+                , type: 'datetime'
+                , format: 'yyyy-MM-dd HH:mm:ss'
+            });
 
             var uploadInst = upload.render({
                 elem: '#uploadAdvImg' //绑定元素
@@ -193,9 +260,25 @@
                 switch (data.value) {
                     case "0":
                         $("#wordDiv").show();
+                        //取消验证和添加验证
+                        $("#hidPicSrc").attr("lay-verify", "");
+                        $("#PicImageAlt").attr("lay-verify", "");
+                        $("#PicLink").attr("lay-verify", "");
+                        $("#WordTitle").attr("lay-verify", "required");
+                        $("#WordSize").attr("lay-verify", "required");
+                        $("#WordColor").attr("lay-verify", "required");
+                        $("#WordLink").attr("lay-verify", "required");
                         break;
                     case "1":
                         $("#picDiv").show();
+                        //取消验证和添加验证
+                        $("#hidPicSrc").attr("lay-verify", "imgUpload")
+                        $("#PicImageAlt").attr("lay-verify", "required");
+                        $("#PicLink").attr("lay-verify", "required");
+                        $("#WordTitle").attr("lay-verify", "");
+                        $("#WordSize").attr("lay-verify", "");
+                        $("#WordColor").attr("lay-verify", "");
+                        $("#WordLink").attr("lay-verify", "");
                         break;
                 }
             })

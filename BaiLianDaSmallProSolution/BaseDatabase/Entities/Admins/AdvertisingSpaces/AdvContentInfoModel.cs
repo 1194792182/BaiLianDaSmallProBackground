@@ -46,4 +46,24 @@ namespace BaseDatabase.Entities.Admins.AdvertisingSpaces
 
         public DateTime CreateOn { get; set; }
     }
+
+    public class AdvContentPicModel
+    {
+        public string PicUrl { get; set; }
+
+        public string PicImageAlt { get; set; }
+
+        public string PicLink { get; set; }
+    }
+
+    public class AdvContentWordModel
+    {
+        public string WordTitle { get; set; }
+
+        public string WordSize { get; set; }
+
+        public string WordColor { get; set; }
+
+        public string WordLink { get; set; }
+    }
 }

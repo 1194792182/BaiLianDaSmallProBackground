@@ -1,6 +1,7 @@
 ﻿using BaseDatabase.Entities.Admins.AdvertisingSpaces;
 using BaseDatabase.Services.Admins.AdvertisingSpaces;
 using MyUntil;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -254,6 +255,8 @@ namespace Web.Areas.LayUI.Controllers
             CreateAdvertisingSpaceSelectItemList();
             CreateAdvContentInfoTypeSelectItemList();
             CreateTargetTypeSelectItemList();
+            ViewBag.Begin = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            ViewBag.End = DateTime.Now.AddMonths(1).ToString("yyyy-MM-dd HH:mm:ss");
             return View();
         }
 
@@ -264,7 +267,47 @@ namespace Web.Areas.LayUI.Controllers
             var model = new BaseReturnModel() { IsSuccess = false, ReturnMsg = "操作失败" };
             try
             {
+                var entity = new AdvContentInfo()
+                {
+                    AdvertisingSpaceInfoSign = paraModel.AdvertisingSpaceInfoSign,
+                    Title = paraModel.Title,
+                    Order = paraModel.Order,
+                    Intro = paraModel.Intro,
+                    TargetType = paraModel.TargetType,
+                    ContentJsonKeyword = paraModel.ContentJsonKeyword,
+                    Price = paraModel.Price,
+                    BeginDatetime = paraModel.BeginDatetime,
+                    EndDateTime = paraModel.EndDateTime,
+                    Type = paraModel.Type
+                };
 
+                switch (paraModel.Type)
+                {
+                    case AdvContentInfoType.Word:
+                        var wordModel = new AdvContentWordModel()
+                        {
+                            WordTitle = form["WordTitle"],
+                            WordSize = form["WordSize"],
+                            WordColor = form["WordColor"],
+                            WordLink = form["WordLink"]
+                        };
+                        entity.ContentJson = JsonConvert.SerializeObject(wordModel);
+                        break;
+                    case AdvContentInfoType.Pic:
+                        var picModel = new AdvContentPicModel()
+                        {
+                            PicUrl = form["PicUrl"],
+                            PicImageAlt = form["PicImageAlt"],
+                            PicLink = form["PicLink"]
+                        };
+                        entity.ContentJson = JsonConvert.SerializeObject(picModel);
+                        break;
+                    default:
+                        break;
+                }
+
+                _advContentInfoService.Insert(entity);
+                
                 model.IsSuccess = true;
                 model.ReturnMsg = "添加完成";
             }
