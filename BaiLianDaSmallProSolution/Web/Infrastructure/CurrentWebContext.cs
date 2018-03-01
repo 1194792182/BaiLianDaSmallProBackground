@@ -21,7 +21,7 @@ namespace Web.Infrastructure
             _timeOut = FormsAuthentication.Timeout;
         }
 
-        private static AdminUserInfoModel _loginAdminUser;
+        private AdminUserInfoModel _loginAdminUser;
 
         private AdminUserInfoModel GetAdminUserInfo()
         {
