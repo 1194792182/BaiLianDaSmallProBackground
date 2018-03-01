@@ -313,6 +313,7 @@
     <Content Include="Areas\LayUI\Views\LayUiAdv\EditAdvertisingSpace.cshtml" />
     <Content Include="Areas\LayUI\Views\LayUiAdv\AdvContentIndex.cshtml" />
     <Content Include="Areas\LayUI\Views\LayUiAdv\AddAdvContent.cshtml" />
+    <Content Include="Areas\LayUI\Views\LayUiAdv\EditAdvContent.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -331,6 +332,7 @@
     <Compile Include="Areas\LayUI\Controllers\LayUiMenuController.cs" />
     <Compile Include="Areas\LayUI\Controllers\LayUiSystemController.cs" />
     <Compile Include="Areas\LayUI\LayUIAreaRegistration.cs" />
+    <Compile Include="Areas\LayUI\Models\Advs\EditAdvContentModel.cs" />
     <Compile Include="Areas\LayUI\Models\BaseReturnModel.cs" />
     <Compile Include="Areas\LayUI\Models\ListResult.cs" />
     <Compile Include="Areas\LayUI\Models\ListSearch.cs" />

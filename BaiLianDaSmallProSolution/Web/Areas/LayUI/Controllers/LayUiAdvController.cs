@@ -8,6 +8,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Web.Areas.LayUI.Models;
+using Web.Areas.LayUI.Models.Advs;
 using Web.Infrastructure;
 
 namespace Web.Areas.LayUI.Controllers
@@ -321,7 +322,84 @@ namespace Web.Areas.LayUI.Controllers
 
         public ActionResult EditAdvContent(int id)
         {
-            return View();
+            CreateAdvertisingSpaceSelectItemList();
+            CreateAdvContentInfoTypeSelectItemList();
+            CreateTargetTypeSelectItemList();
+
+            var model = new EditAdvContentModel();
+
+            model.AdvContentInfoModel = _advContentInfoService.GetById(id);
+
+            if (model.AdvContentInfoModel.Type == AdvContentInfoType.Pic)
+            {
+                model.AdvContentPicModel = JsonConvert.DeserializeObject<AdvContentPicModel>(model.AdvContentInfoModel.ContentJson);
+            }
+
+            if (model.AdvContentInfoModel.Type == AdvContentInfoType.Word)
+            {
+                model.AdvContentWordModel= JsonConvert.DeserializeObject<AdvContentWordModel>(model.AdvContentInfoModel.ContentJson);
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult EditAdvContent(AdvContentInfoModel paraModel, FormCollection form)
+        {
+            var model = new BaseReturnModel() { IsSuccess = false, ReturnMsg = "操作失败" };
+
+            try
+            {
+                var entityModel = _advContentInfoService.GetById(paraModel.Id);
+
+                entityModel.AdvertisingSpaceInfoSign = paraModel.AdvertisingSpaceInfoSign;
+                entityModel.Title = paraModel.Title;
+                entityModel.Order = paraModel.Order;
+                entityModel.Intro = paraModel.Intro;
+                entityModel.TargetType = paraModel.TargetType;
+                entityModel.ContentJsonKeyword = paraModel.ContentJsonKeyword;
+                entityModel.Price = paraModel.Price;
+                entityModel.BeginDatetime = paraModel.BeginDatetime;
+                entityModel.EndDateTime = paraModel.EndDateTime;
+                entityModel.Type = paraModel.Type;
+
+                switch (paraModel.Type)
+                {
+                    case AdvContentInfoType.Word:
+                        var wordModel = new AdvContentWordModel()
+                        {
+                            WordTitle = form["WordTitle"],
+                            WordSize = form["WordSize"],
+                            WordColor = form["WordColor"],
+                            WordLink = form["WordLink"]
+                        };
+                        entityModel.ContentJson = JsonConvert.SerializeObject(wordModel);
+                        break;
+                    case AdvContentInfoType.Pic:
+                        var picModel = new AdvContentPicModel()
+                        {
+                            PicUrl = form["PicUrl"],
+                            PicImageAlt = form["PicImageAlt"],
+                            PicLink = form["PicLink"]
+                        };
+                        entityModel.ContentJson = JsonConvert.SerializeObject(picModel);
+                        break;
+                    default:
+                        break;
+                }
+
+                _advContentInfoService.Update(entityModel);
+
+                model.IsSuccess = true;
+                model.ReturnMsg = "编辑完成";
+            }
+            catch (Exception ex)
+            {
+                model.IsSuccess = false;
+                model.ReturnMsg = ex.Message;
+            }
+
+            return Json(model);
         }
 
         [HttpPost]
