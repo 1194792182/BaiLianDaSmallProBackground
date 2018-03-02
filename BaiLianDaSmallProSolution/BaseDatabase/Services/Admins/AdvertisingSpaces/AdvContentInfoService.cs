@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BaseDatabase.Services.Admins.AdvertisingSpaces
 {
-    public class AdvContentInfoService: IAdvContentInfoService
+    public class AdvContentInfoService : IAdvContentInfoService
     {
         public void Delete(int id)
         {
@@ -89,11 +89,23 @@ namespace BaseDatabase.Services.Admins.AdvertisingSpaces
             }
         }
 
-        public IPageList<AdvContentInfo> GetPageList(int page, int size)
+        public IPageList<AdvContentInfo> GetPageList(int page, int size, string contentJsonKeyword, string advertisingSpaceInfoSign)
         {
             using (var db = new BaseDatabaseContext())
             {
-                var query = db.AdvContentInfos.OrderByDescending(q => q.Id);
+                var query = db.AdvContentInfos.AsQueryable();
+
+                if (!string.IsNullOrEmpty(contentJsonKeyword))
+                {
+                    query = query.Where(q => q.ContentJsonKeyword.Contains(contentJsonKeyword));
+                }
+
+                if (!string.IsNullOrEmpty(advertisingSpaceInfoSign))
+                {
+                    query = query.Where(q => q.AdvertisingSpaceInfoSign == advertisingSpaceInfoSign);
+                }
+
+                query = query.OrderByDescending(q => q.Id);
                 return new PageList<AdvContentInfo>(query, page, size);
             }
         }

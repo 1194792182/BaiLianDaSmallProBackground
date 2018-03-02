@@ -89,11 +89,18 @@ namespace BaseDatabase.Services.Admins.AdminUserInfos
             }
         }
 
-        public IPageList<AdminUserInfo> GetPageList(int page, int size)
+        public IPageList<AdminUserInfo> GetPageList(int page, int size,string userName)
         {
             using (var db = new BaseDatabaseContext())
             {
-                var query = db.AdminUserInfos.OrderByDescending(q => q.Id);
+                var query = db.AdminUserInfos.AsNoTracking().AsQueryable();
+
+                if (!string.IsNullOrEmpty(userName))
+                {
+                    query = query.Where(q => q.UserName.Contains(userName));
+                }
+
+                query = query.OrderByDescending(q => q.Id);
                 return new PageList<AdminUserInfo>(query, page, size);
             }
         }

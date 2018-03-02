@@ -25,12 +25,12 @@ namespace Web.Areas.LayUI.Controllers
             return View();
         }
 
-        public ActionResult List(ListSearch search)
+        public ActionResult List(ListSearch search,string userName)
         {
             var model = new ListResult();
             try
             {
-                var list = _adminUserInfoService.GetPageList(search.pageIndex, search.limit);
+                var list = _adminUserInfoService.GetPageList(search.pageIndex, search.limit, userName);
 
                 model.count = list.TotalRecords;
                 model.data = list.Datas;

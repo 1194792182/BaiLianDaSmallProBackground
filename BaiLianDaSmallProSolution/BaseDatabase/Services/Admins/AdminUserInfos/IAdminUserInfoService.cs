@@ -22,7 +22,7 @@ namespace BaseDatabase.Services.Admins.AdminUserInfos
 
         AdminUserInfoModel GetLast();
 
-        IPageList<AdminUserInfo> GetPageList(int page, int size);
+        IPageList<AdminUserInfo> GetPageList(int page, int size,string userName);
 
         bool IsExistUserName(string userName);
 

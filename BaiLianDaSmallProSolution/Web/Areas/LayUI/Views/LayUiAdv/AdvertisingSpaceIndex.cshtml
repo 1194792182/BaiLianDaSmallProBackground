@@ -9,12 +9,16 @@
 <fieldset class="layui-elem-field layui-field-title">
     <legend>广告位列表</legend>
 </fieldset>
+<div class="searchTool layui-form" style="margin-left:18px;">
+    <div class="layui-inline">
+        <input class="layui-input" id="title" autocomplete="off" placeholder="请输入标题">
+    </div>
+    <div class="layui-inline">
+        <button class="layui-btn searchBtn" data-type="reload">搜索</button>
+    </div>
 
-<div class="layui-row">
-    <div class="layui-col-md1" style="padding-left:1rem;">
-        <div class="layui-btn-group">
-            <a class="layui-btn" href="/layui/LayUiAdv/AddAdvertisingSpace" data-type="add">新增</a>
-        </div>
+    <div class="layui-inline">
+        <a class="layui-btn" href="/layui/LayUiAdv/AddAdvertisingSpace" data-type="add">新增</a>
     </div>
 </div>
 <table class="layui-hide" id='table' lay-filter="table"></table>
@@ -42,6 +46,7 @@
             table.render({
                 elem: '#table'
                 , url: '/layui/LayUiAdv/AdvertisingSpaceList'
+                , method: "post"
                 , cols: [[
                     { type: 'checkbox', fixed: 'left' },
                     { field: 'Id', width: 80, title: '序号', fixed:true }
@@ -57,6 +62,8 @@
 
                 ]]
                 , page: true
+                , height: 'full-180'
+                , id: "dataTable"
             });
 
             //监听工具条
@@ -77,6 +84,28 @@
                         break;
                     default: break;
                 }
+            });
+
+            var $ = layui.$, active = {
+
+                reload: function () {
+                    var title = $('#title');
+                    
+                    //执行重载
+                    table.reload('dataTable', {
+                        page: {
+                            curr: 1 //重新从第 1 页开始
+                        }
+                        , where: {
+                            title: title.val()
+                        }
+                    });
+                }
+            }
+
+            $('.searchTool .searchBtn').on('click', function () {
+                var type = $(this).data('type');
+                active[type] ? active[type].call(this) : '';
             });
         });
     </script>

@@ -22,6 +22,6 @@ namespace BaseDatabase.Services.Admins.AdvertisingSpaces
 
         AdvContentInfoModel GetLast();
 
-        IPageList<AdvContentInfo> GetPageList(int page, int size);
+        IPageList<AdvContentInfo> GetPageList(int page, int size, string contentJsonKeyword, string advertisingSpaceInfoSign);
     }
 }

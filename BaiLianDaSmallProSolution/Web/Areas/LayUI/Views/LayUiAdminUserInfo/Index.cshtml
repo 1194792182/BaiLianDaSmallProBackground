@@ -11,11 +11,15 @@
     <legend>管理员列表</legend>
 </fieldset>
 
-<div class="layui-row">
-    <div class="layui-col-md1" style="padding-left:1rem;">
-        <div class="layui-btn-group">
-            <a class="layui-btn" href="/layui/LayUiAdminUserInfo/Add" data-type="add">新增</a>
-        </div>
+<div class="searchTool layui-form" style="margin-left:18px;">
+    <div class="layui-inline">
+        <input class="layui-input" id="userName" autocomplete="off" placeholder="请输入用户名">
+    </div>
+    <div class="layui-inline">
+        <button class="layui-btn searchBtn" data-type="reload">搜索</button>
+    </div>
+    <div class="layui-inline">
+        <a class="layui-btn" href="/layui/LayUiAdminUserInfo/Add" data-type="add">新增</a>
     </div>
 </div>
 <table class="layui-hide" id='adminUserInfos' lay-filter="adminUserInfos"></table>
@@ -56,6 +60,8 @@
 
                 ]]
                 , page: true
+                , height: 'full-200'
+                , id: "dataTable"
             });
 
             //监听工具条
@@ -68,6 +74,27 @@
                         aj.postNoSyncReq('/layui/LayUiAdminUserInfo/Delete', { id: data.Id });
                     });
                 }
+            });
+
+            var $ = layui.$, active = {
+
+                reload: function () {
+                    var userName = $('#userName');
+                    //执行重载
+                    table.reload('dataTable', {
+                        page: {
+                            curr: 1 //重新从第 1 页开始
+                        }
+                        , where: {
+                            userName: userName.val()
+                        }
+                    });
+                }
+            }
+
+            $('.searchTool .searchBtn').on('click', function () {
+                var type = $(this).data('type');
+                active[type] ? active[type].call(this) : '';
             });
         });
     </script>

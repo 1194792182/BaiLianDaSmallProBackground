@@ -32,12 +32,13 @@ namespace Web.Areas.LayUI.Controllers
             return View();
         }
 
-        public ActionResult AdvertisingSpaceList(ListSearch search)
+        [HttpPost]
+        public ActionResult AdvertisingSpaceList(ListSearch search,string title)
         {
             var model = new ListResult();
             try
             {
-                var list = _advertisingSpaceService.GetPageList(search.pageIndex, search.limit);
+                var list = _advertisingSpaceService.GetPageList(search.pageIndex, search.limit, title);
 
                 model.count = list.TotalRecords;
                 model.data = list.Datas.Select(q => new
@@ -58,7 +59,7 @@ namespace Web.Areas.LayUI.Controllers
                 model.msg = ex.Message;
             }
 
-            return Json(model, JsonRequestBehavior.AllowGet);
+            return Json(model);
         }
 
         [NonAction]
@@ -213,15 +214,17 @@ namespace Web.Areas.LayUI.Controllers
 
         public ActionResult AdvContentIndex()
         {
+            CreateAdvertisingSpaceSelectItemList();
             return View();
         }
 
-        public ActionResult AdvContentList(ListSearch search)
+        [HttpPost]
+        public ActionResult AdvContentList(ListSearch search,string contentJsonKeyword,string advertisingSpaceInfoSign)
         {
             var model = new ListResult();
             try
             {
-                var list = _advContentInfoService.GetPageList(search.pageIndex, search.limit);
+                var list = _advContentInfoService.GetPageList(search.pageIndex, search.limit, contentJsonKeyword, advertisingSpaceInfoSign);
                 var signs = list.Datas.Select(q => q.AdvertisingSpaceInfoSign).ToList();
                 var advSpaces = _advertisingSpaceService.GetListByKeys(signs);
                 model.count = list.TotalRecords;
@@ -233,6 +236,7 @@ namespace Web.Areas.LayUI.Controllers
                         Id = q.Id,
                         Sign = q.AdvertisingSpaceInfoSign,
                         Title = q.Title,
+                        q.ContentJsonKeyword,
                         AdvSpaceTitle = advSpace.Title,
                         Size = advSpace.Width.ToString() + "x" + advSpace.Height.ToString(),
                         BeginDatetime = q.BeginDatetime,
@@ -248,7 +252,7 @@ namespace Web.Areas.LayUI.Controllers
                 model.msg = ex.Message;
             }
 
-            return Json(model, JsonRequestBehavior.AllowGet);
+            return Json(model);
         }
 
         public ActionResult AddAdvContent()

@@ -89,11 +89,19 @@ namespace BaseDatabase.Services.Admins.AdvertisingSpaces
             }
         }
 
-        public IPageList<AdvertisingSpaceInfo> GetPageList(int page, int size)
+        public IPageList<AdvertisingSpaceInfo> GetPageList(int page, int size,string title)
         {
             using (var db = new BaseDatabaseContext())
             {
-                var query = db.AdvertisingSpaceInfos.OrderByDescending(q => q.Id);
+                var query = db.AdvertisingSpaceInfos.AsQueryable();
+
+                if (!string.IsNullOrEmpty(title))
+                {
+                    query = query.Where(q => q.Title.Contains(title));
+                }
+
+                query = query.OrderByDescending(q => q.Id);
+
                 return new PageList<AdvertisingSpaceInfo>(query, page, size);
             }
         }

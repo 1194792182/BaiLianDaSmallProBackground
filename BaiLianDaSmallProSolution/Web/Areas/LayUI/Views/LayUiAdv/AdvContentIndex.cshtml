@@ -10,13 +10,30 @@
     <legend>广告内容列表</legend>
 </fieldset>
 
-<div class="layui-row">
-    <div class="layui-col-md1" style="padding-left:1rem;">
-        <div class="layui-btn-group">
-            <a class="layui-btn" href="/layui/LayUiAdv/AddAdvContent" data-type="add">新增</a>
-        </div>
+
+<div class="searchTool layui-form" style="margin-left:18px;">
+    <div class="layui-inline">
+        <input class="layui-input" id="contentJsonKeyword" autocomplete="off" placeholder="请输入关键词">
+    </div>
+    <div class="layui-inline">
+        <select id="advertisingSpaceInfoSign" lay-verify="" lay-search>
+            <option value="">请选择要搜索的广告位</option>
+            @foreach (var item in ViewBag.AdvertisingSpaceSelectItemList as List<SelectListItem>)
+            {
+                <option value="@item.Value">@item.Text</option>
+            }
+        </select>
+    </div>
+
+    <div class="layui-inline">
+        <button class="layui-btn searchBtn" data-type="reload">搜索</button>
+    </div>
+
+    <div class="layui-inline">
+        <a class="layui-btn" href="/layui/LayUiAdv/AddAdvContent" data-type="add">新增</a>
     </div>
 </div>
+
 <table class="layui-hide" id='table' lay-filter="table"></table>
 <script type="text/html" id="bar">
     <a class="layui-btn layui-btn-sm" lay-event="edit">编辑</a>
@@ -42,11 +59,13 @@
             table.render({
                 elem: '#table'
                 , url: '/layui/LayUiAdv/AdvContentList'
+                , method:"post"
                 , cols: [[
                     { type: 'checkbox', fixed: 'left' },
                     { field: 'Id', width: 80, title: '序号', fixed:true }
                     , { field: 'Sign', width: 150, title: '广告位标识' }
                     , { field: 'AdvSpaceTitle', title: '广告位标题' }
+                    , { field: 'ContentJsonKeyword', title: '关键词',width:100 }
                     , { field: 'Title', title: '广告名称' }
                     , { field: 'Size', width: 100, title: '尺寸' }
                     , { field: 'BeginDatetime', width: 180, title: '开始时间', templet: "<div>{{getDate(d.BeginDatetime)}}</div>" }
@@ -56,6 +75,8 @@
 
                 ]]
                 , page: true
+                , height: 'full-180'
+                , id: "advContentTable"
             });
 
             //监听工具条
@@ -76,6 +97,29 @@
                         break;
                     default: break;
                 }
+            });
+
+            var $ = layui.$, active = {
+
+                reload: function () {
+                    var contentJsonKeyword = $('#contentJsonKeyword');
+                    var advertisingSpaceInfoSign = $("#advertisingSpaceInfoSign");
+                    //执行重载
+                    table.reload('advContentTable', {
+                        page: {
+                            curr: 1 //重新从第 1 页开始
+                        }
+                        , where: {
+                            contentJsonKeyword: contentJsonKeyword.val(),
+                            advertisingSpaceInfoSign: advertisingSpaceInfoSign.val()
+                        }
+                    });
+                }
+            }
+
+            $('.searchTool .searchBtn').on('click', function () {
+                var type = $(this).data('type');
+                active[type] ? active[type].call(this) : '';
             });
         });
     </script>

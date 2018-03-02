@@ -44,7 +44,7 @@ namespace Web.Areas.LayUI.Controllers
                     Title = "广告",
                     Icon = "icon-barrage_fill",
                     Href = "",
-                    Spread = false,
+                    Spread = true,
                     ModuleId = 2,
                     Children = new List<ChildrenMenuModel>()
                     {
