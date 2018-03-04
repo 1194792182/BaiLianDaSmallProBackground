@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Web.Infrastructure;
+using Web.Models;
 
 namespace Web.Filters
 {
@@ -33,6 +34,11 @@ namespace Web.Filters
             }
 
             if (this._doNotValidate)
+            {
+                return;
+            }
+
+            if (!SystemConst.EnableAdminAuth)
             {
                 return;
             }

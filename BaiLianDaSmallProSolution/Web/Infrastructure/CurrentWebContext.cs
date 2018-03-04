@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
+using Web.Models;
 
 namespace Web.Infrastructure
 {
@@ -36,7 +37,7 @@ namespace Web.Infrastructure
             }
 
             var cookie = HttpContext.Current.Request.Cookies[_cookieIdStr];
-            if (cookie == null || string.IsNullOrEmpty(cookie.Value) || cookie.Expires <= DateTime.Now)
+            if (cookie == null || string.IsNullOrEmpty(cookie.Value))
             {
                 return null;
             }
@@ -44,6 +45,10 @@ namespace Web.Infrastructure
             try
             {
                 ticket = FormsAuthentication.Decrypt(cookie.Value);
+                if (ticket.Expired)
+                {
+                    return null;
+                }
             }
             catch
             {
@@ -68,26 +73,34 @@ namespace Web.Infrastructure
         {
             get
             {
-                return _loginAdminUser != null;
+                return LoginAdminUser != null;
             }
         }
+
+        private static object LoginAdminUserLock=new object();
 
         public AdminUserInfoModel LoginAdminUser
         {
             get
             {
-                if (_loginAdminUser != null)
+                lock (LoginAdminUserLock)
                 {
-                    return _loginAdminUser;
+                    if (_loginAdminUser != null)
+                    {
+                        return _loginAdminUser;
+                    }
+                    else
+                    {
+                        if (SystemConst.EnableAdminAuth)
+                        {
+                            _loginAdminUser = GetAdminUserInfo();
+                        }
+                        else
+                        {
+                            _loginAdminUser = _adminUserInfoService.GetByUserName("admin");
+                        }
+                    }
                 }
-                else
-                {
-                    //_loginAdminUser = GetAdminUserInfo();
-                    ///todo:发布前记得替换以下语句
-                    //非正式环境下使用它
-                    _loginAdminUser= _adminUserInfoService.GetByUserName("admin");
-                }
-
                 return _loginAdminUser;
             }
 
@@ -97,7 +110,7 @@ namespace Web.Infrastructure
             }
         }
 
-        public void SetLogin(AdminUserInfoModel adminUserInfo, bool isPersistent = false, int days = 365)
+        public void SetLogin(AdminUserInfoModel adminUserInfo, bool isPersistent = false)
         {
             var now = DateTime.Now;
             var ticket = new FormsAuthenticationTicket(
@@ -111,10 +124,6 @@ namespace Web.Infrastructure
 
             var cookie = new HttpCookie(_cookieIdStr, FormsAuthentication.Encrypt(ticket));
             cookie.HttpOnly = true;
-            if (ticket.IsPersistent)
-            {
-                cookie.Expires = DateTime.Now.AddDays(days);
-            }
             cookie.Secure = FormsAuthentication.RequireSSL;
             cookie.Path = FormsAuthentication.FormsCookiePath;
             if (FormsAuthentication.CookieDomain != null)
