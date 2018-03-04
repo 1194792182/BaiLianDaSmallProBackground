@@ -343,6 +343,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PayController.cs" />
     <Compile Include="Controllers\PictureController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Filters\AdminAuthorizeAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -359,6 +360,10 @@
     <Compile Include="Models\Pays\PayModel.cs" />
     <Compile Include="Models\Pays\PayParamModel.cs" />
     <Compile Include="Models\Pictures\PictureModel.cs" />
+    <Compile Include="Models\Tests\FirstTestParamModel.cs" />
+    <Compile Include="Models\Tests\SecondTestParaModel.cs" />
+    <Compile Include="Models\Tests\TestModel.cs" />
+    <Compile Include="Models\Tests\ThirdTestParaModel.cs" />
     <Compile Include="Models\Users\UserInfoModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
