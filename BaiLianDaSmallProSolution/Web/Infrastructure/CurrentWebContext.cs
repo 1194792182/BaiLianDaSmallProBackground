@@ -26,11 +26,6 @@ namespace Web.Infrastructure
 
         private AdminUserInfoModel GetAdminUserInfo()
         {
-            if (_loginAdminUser != null)
-            {
-                return _loginAdminUser;
-            }
-
             if (HttpContext.Current == null)
             {
                 return null;
@@ -66,6 +61,11 @@ namespace Web.Infrastructure
                 return null;
             }
 
+            if (_loginAdminUser != null && _loginAdminUser.UserName.ToLower().Equals(userName.ToLower()))
+            {
+                return _loginAdminUser;
+            }
+
             return _adminUserInfoService.GetByUserName(userName);
         }
 
@@ -77,7 +77,7 @@ namespace Web.Infrastructure
             }
         }
 
-        private static object LoginAdminUserLock=new object();
+        private static object LoginAdminUserLock = new object();
 
         public AdminUserInfoModel LoginAdminUser
         {
@@ -85,20 +85,13 @@ namespace Web.Infrastructure
             {
                 lock (LoginAdminUserLock)
                 {
-                    if (_loginAdminUser != null)
+                    if (SystemConst.EnableAdminAuth)
                     {
-                        return _loginAdminUser;
+                        _loginAdminUser = GetAdminUserInfo();
                     }
                     else
                     {
-                        if (SystemConst.EnableAdminAuth)
-                        {
-                            _loginAdminUser = GetAdminUserInfo();
-                        }
-                        else
-                        {
-                            _loginAdminUser = _adminUserInfoService.GetByUserName("admin");
-                        }
+                        _loginAdminUser = _adminUserInfoService.GetByUserName("admin");
                     }
                 }
                 return _loginAdminUser;

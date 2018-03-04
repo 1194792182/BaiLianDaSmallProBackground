@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Web.Infrastructure;
+using Web.InstanceMangers;
 
 namespace Web.Areas.Admin.Controllers
 {
@@ -13,9 +14,9 @@ namespace Web.Areas.Admin.Controllers
 
         public AdminHomeController()
         {
-            _currentWebContext = new CurrentWebContext();
+            _currentWebContext = InstanceManger.GetCurrentWebContext();
         }
-        
+
         public ActionResult Index()
         {
             ViewBag.UserName = _currentWebContext.LoginAdminUser.UserName;

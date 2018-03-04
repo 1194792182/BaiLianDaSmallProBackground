@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using Web.Areas.LayUI.Models;
 using Web.Areas.LayUI.Models.Systems;
 using Web.Infrastructure;
+using Web.InstanceMangers;
 
 namespace Web.Areas.LayUI.Controllers
 {
@@ -17,7 +18,7 @@ namespace Web.Areas.LayUI.Controllers
         private readonly IAdminUserInfoService _adminUserInfoService;
         public LayUiSystemController()
         {
-            _currentWebContext = new CurrentWebContext();
+            _currentWebContext = InstanceManger.GetCurrentWebContext();
             _adminUserInfoService = new AdminUserInfoService();
         }
 
@@ -29,7 +30,8 @@ namespace Web.Areas.LayUI.Controllers
         [HttpPost]
         public ActionResult ChangePwd(string confirmPassword)
         {
-            var model = new BaseReturnModel() {
+            var model = new BaseReturnModel()
+            {
                 IsSuccess = false,
                 ReturnMsg = "修改失败"
             };
@@ -58,7 +60,8 @@ namespace Web.Areas.LayUI.Controllers
         [HttpPost]
         public ActionResult CheckOldPwd(string oldPwd)
         {
-            var model = new CheckOldPwdModel() {
+            var model = new CheckOldPwdModel()
+            {
                 IsSuccess = false,
                 ReturnMsg = "请输入正确的旧密码"
             };

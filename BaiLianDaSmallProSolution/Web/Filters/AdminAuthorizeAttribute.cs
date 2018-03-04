@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Web.Infrastructure;
+using Web.InstanceMangers;
 using Web.Models;
 
 namespace Web.Filters
@@ -43,7 +44,7 @@ namespace Web.Filters
                 return;
             }
 
-            var sysContext = new CurrentWebContext();
+            var sysContext = InstanceManger.GetCurrentWebContext();
 
             if (!sysContext.IsAdminUserLogined)
             {

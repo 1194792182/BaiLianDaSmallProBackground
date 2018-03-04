@@ -9,6 +9,7 @@ using System.Web.SessionState;
 using System.Web.Http;
 using BaseDatabase;
 using BaseDatabase.AutoMaps;
+using Web.InstanceMangers;
 
 namespace Web
 {
@@ -16,6 +17,7 @@ namespace Web
     {
         void Application_Start(object sender, EventArgs e)
         {
+            InstanceManger.RegisterType();
             // 在应用程序启动时运行的代码
             BaseDatabaseConfig.SetDbInfo();
             AutoMapConfig.CreateMaps();

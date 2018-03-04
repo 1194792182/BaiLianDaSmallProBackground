@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using Web.Areas.LayUI.Models;
 using Web.Infrastructure;
+using Web.InstanceMangers;
 
 namespace Web.Areas.LayUI.Controllers
 {
@@ -19,7 +20,7 @@ namespace Web.Areas.LayUI.Controllers
         public LayUiAdminLoginController()
         {
             _adminUserInfoService = new AdminUserInfoService();
-            _currentWebContext = new CurrentWebContext();
+            _currentWebContext = InstanceManger.GetCurrentWebContext(); ;
         }
 
         public ActionResult Login()
@@ -29,9 +30,10 @@ namespace Web.Areas.LayUI.Controllers
 
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public ActionResult Login(string account,string pwd)
+        public ActionResult Login(string account, string pwd)
         {
-            var model = new BaseReturnModel() {
+            var model = new BaseReturnModel()
+            {
                 IsSuccess = false,
                 ReturnMsg = "用户名或密码有误"
             };
@@ -43,7 +45,7 @@ namespace Web.Areas.LayUI.Controllers
                 {
                     if (entity.Password.Equals(EncryptHelper.Md5(pwd, entity.PwdSalt)))
                     {
-                        _currentWebContext.SetLogin(entity,true);
+                        _currentWebContext.SetLogin(entity, true);
                         model.IsSuccess = true;
                         model.ReturnMsg = "成功登录";
                     }
