@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=4.6.2.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.6.2\lib\net45\Autofac.dll</HintPath>
+    </Reference>
     <Reference Include="AutoMapper, Version=6.2.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.6.2.2\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
@@ -60,6 +63,9 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -76,6 +82,7 @@
     <Compile Include="BaseDatabaseAdminContext.cs" />
     <Compile Include="BaseDatabaseConfig.cs" />
     <Compile Include="BaseDatabaseContext.cs" />
+    <Compile Include="BaseDbInstanceMangers\BaseDbInstanceManger.cs" />
     <Compile Include="Entities\Admins\AdminUserInfos\AdminUserInfo.cs" />
     <Compile Include="Entities\Admins\AdminUserInfos\AdminUserInfoModel.cs" />
     <Compile Include="Entities\Admins\AdvertisingSpaces\AdvContentInfo.cs" />
@@ -88,6 +95,9 @@
     <Compile Include="Entities\BaseSettings\PaySettingModel.cs" />
     <Compile Include="Entities\PayInfos\PayInfo.cs" />
     <Compile Include="Entities\PayInfos\PayInfoModel.cs" />
+    <Compile Include="Entities\ShareLogs\ShareLogInfo.cs" />
+    <Compile Include="Entities\ShareLogs\ShareLogInfoConfig.cs" />
+    <Compile Include="Entities\ShareLogs\ShareLogInfoModel.cs" />
     <Compile Include="Entities\UserInfos\UserInfo.cs" />
     <Compile Include="Entities\UserInfos\UserInfoModel.cs" />
     <Compile Include="Pages\IPageList.cs" />
@@ -105,6 +115,8 @@
     <Compile Include="Services\BaseSettings\PaySettingService.cs" />
     <Compile Include="Services\PayInfos\IPayInfoService.cs" />
     <Compile Include="Services\PayInfos\PayInfoService.cs" />
+    <Compile Include="Services\ShareLogs\IShareLogInfoService.cs" />
+    <Compile Include="Services\ShareLogs\ShareLogInfoService.cs" />
     <Compile Include="Services\UserInfos\IUserInfoService.cs" />
     <Compile Include="Services\UserInfos\UserInfoService.cs" />
   </ItemGroup>

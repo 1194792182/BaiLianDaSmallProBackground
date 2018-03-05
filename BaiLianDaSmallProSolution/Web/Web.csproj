@@ -352,6 +352,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PayController.cs" />
     <Compile Include="Controllers\PictureController.cs" />
+    <Compile Include="Controllers\ShareController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Filters\AdminAuthorizeAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -370,6 +371,7 @@
     <Compile Include="Models\Pays\PayModel.cs" />
     <Compile Include="Models\Pays\PayParamModel.cs" />
     <Compile Include="Models\Pictures\PictureModel.cs" />
+    <Compile Include="Models\Shares\AddShareLogInfoModel.cs" />
     <Compile Include="Models\SystemConst.cs" />
     <Compile Include="Models\Tests\FirstTestParamModel.cs" />
     <Compile Include="Models\Tests\SecondTestParaModel.cs" />

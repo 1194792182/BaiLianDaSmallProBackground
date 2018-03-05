@@ -2,6 +2,7 @@
 using BaseDatabase.AutoMaps.Admins;
 using BaseDatabase.Entities.BaseSettings;
 using BaseDatabase.Entities.PayInfos;
+using BaseDatabase.Entities.ShareLogs;
 using BaseDatabase.Entities.UserInfos;
 using System;
 using System.Collections.Generic;
@@ -43,6 +44,13 @@ namespace BaseDatabase.AutoMaps
 
                 cfg.CreateMap<PaySetting, PaySettingModel>();
                 cfg.CreateMap<PaySettingModel, PaySetting>();
+
+                #endregion
+
+                #region ShareLogInfo
+
+                cfg.CreateMap<ShareLogInfo, ShareLogInfoModel>();
+                cfg.CreateMap<ShareLogInfoModel, ShareLogInfo>();
 
                 #endregion
 

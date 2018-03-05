@@ -1,9 +1,11 @@
 ﻿using BaseDatabase.Entities.BaseSettings;
 using BaseDatabase.Entities.PayInfos;
+using BaseDatabase.Entities.ShareLogs;
 using BaseDatabase.Entities.UserInfos;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,5 +27,14 @@ namespace BaseDatabase
 
         public DbSet<PaySetting> PaySettings { get; set; }
 
+        public DbSet<ShareLogInfo> ShareLogInfos { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+            modelBuilder.Configurations.Add(new ShareLogInfoConfig());
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

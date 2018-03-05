@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BaseDatabase.Entities.BaseSettings;
 using BaseDatabase.Entities.PayInfos;
+using BaseDatabase.Entities.ShareLogs;
 using BaseDatabase.Entities.UserInfos;
 using System;
 using System.Collections.Generic;
@@ -94,6 +95,25 @@ namespace BaseDatabase.AutoMaps
         public static PaySettingModel ToModel(this PaySetting entity)
         {
             return entity.MapTo<PaySetting, PaySettingModel>();
+        }
+
+        #endregion
+
+        #region ShareLogInfo
+
+        public static ShareLogInfo ToEntity(this ShareLogInfoModel model)
+        {
+            return model.MapTo<ShareLogInfoModel, ShareLogInfo>();
+        }
+
+        public static ShareLogInfo ToEntity(this ShareLogInfoModel model, ShareLogInfo destination)
+        {
+            return model.MapTo(destination);
+        }
+
+        public static ShareLogInfoModel ToModel(this ShareLogInfo entity)
+        {
+            return entity.MapTo<ShareLogInfo, ShareLogInfoModel>();
         }
 
         #endregion

@@ -48,6 +48,26 @@ namespace MyUntil
             }
         }
 
+        public static void WebErrorLog(string msg, Exception ex = null)
+        {
+            var message = string.Empty;
+            if (ex != null)
+            {
+                message = msg;
+
+                while (ex.InnerException != null)
+                {
+                    ex = ex.InnerException;
+                    message += "|" + ex.Message;
+                }
+            }
+            else
+            {
+                message = msg;
+            }
+            WebLog(operation:"记录异常",remark: message);
+        }
+
         public static void WebLog(string msg)
         {
             try
