@@ -98,6 +98,7 @@ namespace Web.Controllers
             try
             {
                 var userInfo = _userInfoService.GetByOpenId(paramModel.OpenId);
+                var userInfoId = 0;
                 if (userInfo != null)
                 {
                     userInfo.NickName = paramModel.NickName;
@@ -113,6 +114,7 @@ namespace Web.Controllers
                         userInfo.Mobile = paramModel.Mobile;
                     }
                     _userInfoService.Update(userInfo);
+                    userInfoId = userInfo.Id;
                 }
                 else
                 {
@@ -132,6 +134,7 @@ namespace Web.Controllers
                         newUserInfo.Mobile = paramModel.Mobile;
                     }
                     _userInfoService.Insert(newUserInfo);
+                    userInfoId = newUserInfo.Id;
                 }
                 model.NickName = paramModel.NickName;
                 model.AvatarUrl = paramModel.AvatarUrl;
@@ -139,6 +142,7 @@ namespace Web.Controllers
                 model.Mobile = paramModel.Mobile;
                 model.FormId = paramModel.FormId;
                 model.FormIdExpireTime = !string.IsNullOrEmpty(model.FormId) ? DateTime.Now.AddDays(7).AddMinutes(-2).ToString("yyyy-MM-dd HH:mm:ss") : null;
+                model.UserInfoId = userInfoId;
                 model.IsSuccess = true;
                 model.ReturnMsg = "更新成功";
             }

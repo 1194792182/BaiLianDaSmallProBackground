@@ -31,5 +31,7 @@ namespace Web.Models.Users
         public string FormIdExpireTime { get; set; }
 
         public string Mobile { get; set; }
+
+        public int UserInfoId { get; set; }
     }
 }
