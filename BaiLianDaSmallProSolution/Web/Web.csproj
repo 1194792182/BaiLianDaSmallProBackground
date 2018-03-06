@@ -327,6 +327,20 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="SmallProResource\app.js" />
+    <Content Include="SmallProResource\images\avtar1.jpg" />
+    <Content Include="SmallProResource\images\buy.png" />
+    <Content Include="SmallProResource\images\index1.jpg" />
+    <Content Include="SmallProResource\images\index2.jpg" />
+    <Content Include="SmallProResource\images\index3.jpg" />
+    <Content Include="SmallProResource\images\map.png" />
+    <Content Include="SmallProResource\images\phone.png" />
+    <Content Include="SmallProResource\images\shop.png" />
+    <Content Include="SmallProResource\images\subscribe.png" />
+    <Content Include="SmallProResource\pages\index\index.js" />
+    <Content Include="SmallProResource\pages\main\main.js" />
+    <Content Include="SmallProResource\pages\pay\pay.js" />
+    <Content Include="SmallProResource\utils\util.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -392,6 +406,17 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="SmallProResource\app.json" />
+    <Content Include="SmallProResource\app.wxss" />
+    <Content Include="SmallProResource\pages\index\index.wxml" />
+    <Content Include="SmallProResource\pages\index\index.wxss" />
+    <Content Include="SmallProResource\pages\main\main.json" />
+    <Content Include="SmallProResource\pages\main\main.wxml" />
+    <Content Include="SmallProResource\pages\main\main.wxss" />
+    <Content Include="SmallProResource\pages\pay\pay.json" />
+    <Content Include="SmallProResource\pages\pay\pay.wxml" />
+    <Content Include="SmallProResource\pages\pay\pay.wxss" />
+    <Content Include="SmallProResource\project.config.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
