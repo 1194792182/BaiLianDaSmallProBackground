@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using BaseDatabase.Services.BaseSettings;
 using BaseDatabase.Services.ShareLogs;
 using System;
 using System.Collections.Generic;
@@ -18,12 +19,19 @@ namespace BaseDatabase.BaseDbInstanceMangers
 
             builder.RegisterType<ShareLogInfoService>().As<IShareLogInfoService>().InstancePerLifetimeScope();
 
+            builder.RegisterType<BaseSettingService>().As<IBaseSettingService>().InstancePerLifetimeScope();
+
             container = builder.Build();
         }
 
         public static IShareLogInfoService GetShareLogInfoService()
         {
             return container.Resolve<IShareLogInfoService>();
+        }
+
+        public static IBaseSettingService GetBaseSettingService()
+        {
+            return container.Resolve<IBaseSettingService>();
         }
 
     }

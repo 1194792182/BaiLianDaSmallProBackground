@@ -25,6 +25,7 @@ Page({
           },
           success: function (res) {
             myApp.globalData.openId = res.data.OpenId
+            myApp.globalData.sessionKey = res.data.SessionKey
             wx.getSetting({
               success: res1 => {
                 wx.getUserInfo({
@@ -37,17 +38,33 @@ Page({
                         motto: "授权成功",
                         intro: ""
                       })
-                      if (options.returnUrl) {
-                        var backUrl = decodeURIComponent(options.returnUrl)
-                        console.log("goToUrl:" + backUrl);
-                        wx.redirectTo({
-                          url: backUrl
+                      
+                      if (myApp.waitShareInfoAES) {
+                        myApp.waitShareInfoAES(myApp.globalData.sessionKey,function(){
+                          if (options.returnUrl) {
+                            var backUrl = decodeURIComponent(options.returnUrl)
+                            wx.redirectTo({
+                              url: backUrl
+                            })
+                          } else {
+                            wx.redirectTo({
+                              url: navgateUrl
+                            })
+                          }
                         })
-                      } else {
-                        wx.redirectTo({
-                          url: navgateUrl
-                        })
+                      }else{
+                        if (options.returnUrl) {
+                          var backUrl = decodeURIComponent(options.returnUrl)
+                          wx.redirectTo({
+                            url: backUrl
+                          })
+                        } else {
+                          wx.redirectTo({
+                            url: navgateUrl
+                          })
+                        }
                       }
+                      
                     })
                   }, fail: function () {
                     wx.showModal({

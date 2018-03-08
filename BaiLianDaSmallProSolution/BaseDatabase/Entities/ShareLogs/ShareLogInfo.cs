@@ -29,11 +29,15 @@ namespace BaseDatabase.Entities.ShareLogs
 
         public string ShareName { get; set; }
 
+        public string OpenGId { get; set; }
+
         public DateTime CreateOn { get; set; }
     }
 
     public enum ShareType
     {
+        [Description("未知")]
+        Undefined = -1,
         [Description("首页")]
         Index = 1
     }

@@ -55,6 +55,13 @@ namespace MyUntil
             {
                 message = msg;
 
+                if (ex.InnerException == null)
+                {
+                    message += ex.Message;
+                    message += ex.StackTrace;
+                    message += ex.Source;
+                }
+
                 while (ex.InnerException != null)
                 {
                     ex = ex.InnerException;

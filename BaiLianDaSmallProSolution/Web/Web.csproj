@@ -386,6 +386,7 @@
     <Compile Include="Models\Pays\PayParamModel.cs" />
     <Compile Include="Models\Pictures\PictureModel.cs" />
     <Compile Include="Models\Shares\AddShareLogInfoModel.cs" />
+    <Compile Include="Models\Shares\AESModel.cs" />
     <Compile Include="Models\SystemConst.cs" />
     <Compile Include="Models\Tests\FirstTestParamModel.cs" />
     <Compile Include="Models\Tests\SecondTestParaModel.cs" />

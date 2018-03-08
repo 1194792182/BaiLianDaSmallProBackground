@@ -17,28 +17,32 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var self = this;
     var shareUserId = options.shareUserId
-    console.log("shareUserId:" + shareUserId)
+    // console.log("shareUserId:" + shareUserId)
     var targetUserId = app.globalData.userInfoId;
-    if (targetUserId){
-      console.log("targetUserId:" + targetUserId)
-      if (shareUserId && shareUserId > 0 && shareUserId != targetUserId) {
-        console.log("保存分享记录")
+    if (targetUserId) {
+      // console.log("targetUserId:" + targetUserId)
+      if (shareUserId && shareUserId > 0 && shareUserId != targetUserId && app.globalData.shareTicket==null) {
+        // console.log("保存分享记录")
+        app.logShareSuccess(app, shareUserId, targetUserId, 1, "首页")
       }
-    }else{
-      console.log(shareUserId)
-      if (shareUserId)
-      {
+    } else {
+      // console.log(shareUserId)
+      if (shareUserId) {
         var returnUrl = encodeURIComponent("/pages/main/main?shareUserId=" + shareUserId)
-        console.log(returnUrl)
+        // console.log(returnUrl)
         var toUrl = "/pages/index/index?returnUrl=" + returnUrl;
-        console.log(toUrl)
+        // console.log(toUrl)
         wx.redirectTo({
           url: toUrl
         })
       }
     }
-    
+
+    wx.showShareMenu({
+      withShareTicket: true
+    })
   },
 
   /**
@@ -52,7 +56,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    wx.showShareMenu({
+      withShareTicket: true
+    })
   },
 
   /**
@@ -88,10 +94,25 @@ Page({
    */
   onShareAppMessage: function () {
     return {
-      title: '自定义转发标题',
+      title: '百莲达欢迎您',
       path: 'pages/main/main?shareUserId=' + app.globalData.userInfoId,
       success: function (res) {
-        console.log(res);
+        // console.log(res);
+        wx.showShareMenu({
+          // 要求小程序返回分享目标信息
+          withShareTicket: true
+        });
+        if (res.shareTickets && res.shareTickets[0]) {
+          console.log(res);
+          wx.getShareInfo({
+            shareTicket: res.shareTickets[0],
+            success(res) {
+              app.shareInfoAES(app, res, {}, function (result) {
+                console.log(result)
+              })
+            }
+          })
+        }
       },
       fail: function (res) {
         console.log(res);

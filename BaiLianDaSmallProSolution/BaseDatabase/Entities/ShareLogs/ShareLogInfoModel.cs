@@ -18,6 +18,8 @@ namespace BaseDatabase.Entities.ShareLogs
 
         public string ShareName { get; set; }
 
+        public string OpenGId { get; set; }
+
         public DateTime CreateOn { get; set; }
     }
 }
