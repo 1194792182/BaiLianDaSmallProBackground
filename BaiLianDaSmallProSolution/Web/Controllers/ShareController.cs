@@ -21,16 +21,22 @@ namespace Web.Controllers
     {
         private readonly IShareLogInfoService shareLogInfoService;
 
+        private readonly IShareInfoService shareInfoService;
+
         private readonly IBaseSettingService baseSettingService;
 
         public ShareController()
         {
             this.shareLogInfoService = BaseDbInstanceManger.GetShareLogInfoService();
 
+            this.shareInfoService = BaseDbInstanceManger.GetShareInfoService();
+
             this.baseSettingService = BaseDbInstanceManger.GetBaseSettingService();
         }
 
         private readonly static object AddShareLogInfoLock = new object();
+
+        private readonly static object AddShareInfoLock = new object();
 
         [Route("api/Share/AddShareLogInfo")]
         [HttpPost]
@@ -71,6 +77,36 @@ namespace Web.Controllers
                 model.IsSuccess = false;
                 model.ReturnMsg = "操作失败，详情请查看日志";
                 WebLogHelper.WebErrorLog("AddShareLogInfo", ex);
+            }
+            return Json(model);
+        }
+
+        [Route("api/Share/AddShareInfo")]
+        [HttpPost]
+        public IHttpActionResult AddShareInfo(dynamic obj)
+        {
+            var model = new AddShareInfoModel();
+            try
+            {
+                lock (AddShareInfoLock)
+                {
+                    this.shareInfoService.Insert(new ShareInfo
+                    {
+                        ShareUserInfoId = obj.ShareUserInfoId,
+                        ShareType = obj.ShareType,
+                        ShareName = obj.ShareName,
+                        OpenGId = obj.OpenGId
+                    });
+                    model.IsSuccess = true;
+                    model.ReturnMsg = "添加成功";
+                    return Json(model);
+                }
+            }
+            catch (Exception ex)
+            {
+                model.IsSuccess = false;
+                model.ReturnMsg = "操作失败，详情请查看日志";
+                WebLogHelper.WebErrorLog("AddShareInfo", ex);
             }
             return Json(model);
         }
