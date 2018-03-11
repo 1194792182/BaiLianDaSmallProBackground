@@ -59,6 +59,7 @@
     <Compile Include="Admins\AdvertisingSpaces\AdvContentInfoUnitTest.cs" />
     <Compile Include="Admins\AdvertisingSpaces\AdvertisingSpaceInfoUnitTest.cs" />
     <Compile Include="CreateScriptStrUnitTest.cs" />
+    <Compile Include="SmallPros\ShareLogs\ShareInfoUnitTest.cs" />
     <Compile Include="SmallPros\ShareLogs\ShareLogInfoUnitTest.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

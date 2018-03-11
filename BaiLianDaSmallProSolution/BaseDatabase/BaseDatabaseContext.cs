@@ -14,6 +14,8 @@ namespace BaseDatabase
 {
     public partial class BaseDatabaseContext : DbContext
     {
+        //todo:1、建表 第一步 关联表
+        
         public BaseDatabaseContext() : base("baseDbConn")
         {
 
@@ -28,6 +30,8 @@ namespace BaseDatabase
         public DbSet<PaySetting> PaySettings { get; set; }
 
         public DbSet<ShareLogInfo> ShareLogInfos { get; set; }
+
+        public DbSet<ShareInfo> ShareInfos { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

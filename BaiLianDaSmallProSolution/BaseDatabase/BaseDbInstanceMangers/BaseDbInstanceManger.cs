@@ -11,15 +11,27 @@ namespace BaseDatabase.BaseDbInstanceMangers
 {
     public class BaseDbInstanceManger
     {
+        //todo:4 、建立逻辑服务层
+
         private static IContainer container;
 
         public static void RegisterType()
         {
             var builder = new ContainerBuilder();
 
+            #region Share
+
             builder.RegisterType<ShareLogInfoService>().As<IShareLogInfoService>().InstancePerLifetimeScope();
 
+            builder.RegisterType<ShareInfoService>().As<IShareInfoService>().InstancePerLifetimeScope();
+
+            #endregion
+
+            #region BaseSetting
+
             builder.RegisterType<BaseSettingService>().As<IBaseSettingService>().InstancePerLifetimeScope();
+
+            #endregion
 
             container = builder.Build();
         }
@@ -32,6 +44,11 @@ namespace BaseDatabase.BaseDbInstanceMangers
         public static IBaseSettingService GetBaseSettingService()
         {
             return container.Resolve<IBaseSettingService>();
+        }
+
+        public static IShareInfoService GetShareInfoService()
+        {
+            return container.Resolve<IShareInfoService>();
         }
 
     }

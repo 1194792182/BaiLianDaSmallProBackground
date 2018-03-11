@@ -30,7 +30,7 @@ namespace BaseDataBaseTest.SmallPros.ShareLogs
         }
 
         [TestMethod]
-        public void InsertAdvContent()
+        public void InsertShareLogInfo()
         {
             _ShareLogInfoService.Insert(new ShareLogInfo()
             {
@@ -42,7 +42,7 @@ namespace BaseDataBaseTest.SmallPros.ShareLogs
         }
 
         [TestMethod]
-        public void UpdateAdvContent()
+        public void UpdateShareLogInfo()
         {
             var model = _ShareLogInfoService.GetLast();
             model.TargetUserInfoId = 4;
@@ -50,13 +50,13 @@ namespace BaseDataBaseTest.SmallPros.ShareLogs
         }
 
         [TestMethod]
-        public void RemoveAdvContent()
+        public void RemoveShareLogInfo()
         {
             _ShareLogInfoService.RemoveAll();
         }
 
         [TestMethod]
-        public void DeleteByAdvContentId()
+        public void DeleteByShareLogInfoId()
         {
             var model = _ShareLogInfoService.GetLast();
             if (model != null)

@@ -14,6 +14,8 @@ namespace BaseDatabase.AutoMaps
 {
     public class AutoMapConfig
     {
+        //todo:2、 建表 第二步 映射实体
+
         public static void CreateMaps()
         {
             Mapper.Initialize(cfg =>
@@ -51,6 +53,13 @@ namespace BaseDatabase.AutoMaps
 
                 cfg.CreateMap<ShareLogInfo, ShareLogInfoModel>();
                 cfg.CreateMap<ShareLogInfoModel, ShareLogInfo>();
+
+                #endregion
+
+                #region ShareInfo
+
+                cfg.CreateMap<ShareInfo, ShareInfoModel>();
+                cfg.CreateMap<ShareInfoModel, ShareInfo>();
 
                 #endregion
 

@@ -13,6 +13,8 @@ namespace BaseDatabase.AutoMaps
 {
     public static class MappingExtensions
     {
+
+
         public static TDestination MapTo<TSource, TDestination>(this TSource source)
         {
             return Mapper.Map<TSource, TDestination>(source);
@@ -114,6 +116,25 @@ namespace BaseDatabase.AutoMaps
         public static ShareLogInfoModel ToModel(this ShareLogInfo entity)
         {
             return entity.MapTo<ShareLogInfo, ShareLogInfoModel>();
+        }
+
+        #endregion
+
+        #region ShareInfo
+
+        public static ShareInfo ToEntity(this ShareInfoModel model)
+        {
+            return model.MapTo<ShareInfoModel, ShareInfo>();
+        }
+
+        public static ShareInfo ToEntity(this ShareInfoModel model, ShareInfo destination)
+        {
+            return model.MapTo(destination);
+        }
+
+        public static ShareInfoModel ToModel(this ShareInfo entity)
+        {
+            return entity.MapTo<ShareInfo, ShareInfoModel>();
         }
 
         #endregion

@@ -95,6 +95,8 @@
     <Compile Include="Entities\BaseSettings\PaySettingModel.cs" />
     <Compile Include="Entities\PayInfos\PayInfo.cs" />
     <Compile Include="Entities\PayInfos\PayInfoModel.cs" />
+    <Compile Include="Entities\ShareLogs\ShareInfo.cs" />
+    <Compile Include="Entities\ShareLogs\ShareInfoModel.cs" />
     <Compile Include="Entities\ShareLogs\ShareLogInfo.cs" />
     <Compile Include="Entities\ShareLogs\ShareLogInfoConfig.cs" />
     <Compile Include="Entities\ShareLogs\ShareLogInfoModel.cs" />
@@ -115,7 +117,9 @@
     <Compile Include="Services\BaseSettings\PaySettingService.cs" />
     <Compile Include="Services\PayInfos\IPayInfoService.cs" />
     <Compile Include="Services\PayInfos\PayInfoService.cs" />
+    <Compile Include="Services\ShareLogs\IShareInfoService.cs" />
     <Compile Include="Services\ShareLogs\IShareLogInfoService.cs" />
+    <Compile Include="Services\ShareLogs\ShareInfoService.cs" />
     <Compile Include="Services\ShareLogs\ShareLogInfoService.cs" />
     <Compile Include="Services\UserInfos\IUserInfoService.cs" />
     <Compile Include="Services\UserInfos\UserInfoService.cs" />
