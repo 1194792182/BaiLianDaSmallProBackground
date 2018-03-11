@@ -109,9 +109,12 @@ Page({
             success(res) {
               app.shareInfoAES(app, res, {}, function (result) {
                 console.log(result)
+                app.logShare(app, app.globalData.userInfoId, 1, "首页",result.data.openGId)
               })
             }
           })
+        }else{
+          app.logShare(app, app.globalData.userInfoId, 1, "首页")
         }
       },
       fail: function (res) {

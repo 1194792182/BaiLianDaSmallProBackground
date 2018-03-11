@@ -142,5 +142,26 @@ App({
         console.log("保存分享成功的记录失败")
       }
     })
+  },
+  logShare: function (app, shareUserId, shareType, shareName, openGId){
+    wx.request({
+      url: app.webUrl + "/api/Share/AddShareInfo",
+      method: "POST",
+      data: {
+        ShareUserInfoId: shareUserId,
+        ShareType: shareType == undefined ? -1 : shareType,
+        ShareName: shareName,
+        OpenGId: openGId == undefined ? "" : openGId
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function (res) {
+        console.log("成功保存分享记录");
+      },
+      fail: function (obj) {
+        console.log("保存分享的记录失败")
+      }
+    })
   }
 })
